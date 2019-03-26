@@ -1,0 +1,54 @@
+@import 'assets/scss/variables';
+
+.floating-label-input {
+  position: relative;
+  margin-bottom: 2rem;
+  z-index: 1;
+
+  & input {
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+
+    &:-webkit-autofill {
+      box-shadow: 0 0 0px 1rem #eee inset;
+    }
+
+    &:focus,
+    &.validate {
+      & ~ label {
+        top: -1.25rem;
+        left: 0;
+        font-size: 0.8rem;
+      }
+    }
+
+    &.is-valid {
+      border-bottom-color: $primary;
+      & ~ label {
+        color: $primary;
+      }
+    }
+
+    &.is-invalid {
+      border-bottom-color: $danger;
+      & ~ label {
+        color: $danger;
+      }
+    }
+  }
+
+  & label {
+    position: absolute;
+    font-size: 1rem;
+    margin: 0;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    z-index: -1;
+    cursor: text;
+  }
+}
