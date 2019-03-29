@@ -22,7 +22,6 @@ const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__();
 
-const store = preloadedState =>
-  applyMiddleware(...middlewares)(createStore)(reducer, preloadedState, reduxDevTools);
+const store = applyMiddleware(...middlewares)(createStore)(reducer, reduxDevTools);
 
-export default store();
+export default store;
