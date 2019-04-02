@@ -8,6 +8,7 @@ const Logo = () => (
       className="img-fluid"
       src={icon}
       alt="My Money App Logo - Dollar Sack"
+      title="My Money App"
     />
   </div>
 );
