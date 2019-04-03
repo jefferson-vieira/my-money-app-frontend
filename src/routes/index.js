@@ -9,12 +9,13 @@ import history from './history';
 
 import Auth from 'pages/Auth';
 import NotFound from 'pages/NotFound';
+import Main from 'components/templates/Main';
 
 const Router = () => (
   <BrowserRouter history={history}>
     <Switch>
       <Route exact path="/auth" component={Auth} />
-      <PrivateRoute exact path="/dashboard" component={() => <h1>Dashboard</h1>} />
+      <PrivateRoute path="/account" component={Main} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

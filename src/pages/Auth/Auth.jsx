@@ -109,7 +109,6 @@ class Auth extends Component {
                 id="inputUserConfirmPassword"
                 name="confirmPassword"
                 type="password"
-                autoComplete="current-password"
                 label="Confirme a senha"
                 validate={[required, password, matchField('password')]}
               />

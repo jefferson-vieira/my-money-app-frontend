@@ -17,11 +17,22 @@ const reducer = combineReducers({
   user: userReducer
 });
 
+const rootReducer = (state, action) => {
+  if (action.type.includes('SIGNOUT')) {
+    state = undefined;
+  }
+
+  return reducer(state, action);
+};
+
 const reduxDevTools =
   process.env.NODE_ENV !== 'production' &&
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__();
 
-const store = applyMiddleware(...middlewares)(createStore)(reducer, reduxDevTools);
+const store = applyMiddleware(...middlewares)(createStore)(
+  rootReducer,
+  reduxDevTools
+);
 
 export default store;

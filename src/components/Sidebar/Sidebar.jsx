@@ -17,8 +17,8 @@ const Sidebar = ({ show }) => (
           </NavLink>
         </div>
         <ul className="sidebar__menu">
-          <Item to="/dashboard" icon="chart-line" label="Resumo" />
-          <Item to="/accounts" icon="university" label="Contas" />
+          <Item to="/account/dashboard" icon="chart-line" label="Resumo" />
+          <Item to="/account/banks" icon="university" label="Contas" />
         </ul>
       </div>
     </nav>
