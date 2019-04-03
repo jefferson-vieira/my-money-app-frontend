@@ -2,6 +2,7 @@
 
 .header {
   position: sticky;
+  top: 0;
   width: 100%;
 
   display: flex;
@@ -26,6 +27,7 @@
   }
 
   &__user {
+    text-align: right;
     margin: 0;
     padding: 0.5rem 1rem 0.5rem 0.5rem;
     border-right: 1px solid #ccc;

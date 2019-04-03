@@ -1,4 +1,5 @@
 @import 'assets/scss/variables';
+@import 'assets/scss/media';
 
 .sidebar {
   position: relative;
@@ -11,6 +12,15 @@
 
   &.active {
     margin-left: 0;
+  }
+
+  @include media-breakpoint-down(xs) {
+    transform: none;
+    margin-left: 0;
+
+    &.active {
+      margin-left: -250px;
+    }
   }
 
   &__container {
