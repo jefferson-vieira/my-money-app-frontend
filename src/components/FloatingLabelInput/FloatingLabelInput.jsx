@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import Fade from 'components/animations/Fade';
 
@@ -21,7 +21,7 @@ export default ({
       name={name}
       type={type}
       autoComplete={autoComplete}
-      className={classNames({
+      className={classnames({
         validate: input.value || false,
         'is-valid': !error,
         'is-invalid': touched && error

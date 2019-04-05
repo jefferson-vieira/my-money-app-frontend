@@ -2,6 +2,9 @@ export const required = (value = '') => !value.replace(/\s+/, ' ').trim();
 
 export const name = (value = '') => !/^[a-zA-ZÀ-ÿ ]+$/.test(value);
 
+export const number = value =>
+  !value || isNaN(Number(value)) || Number(value) < 0 || !/^\d*$/.test(value);
+
 export const email = (value = '') =>
   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
 

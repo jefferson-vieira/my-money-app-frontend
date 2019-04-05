@@ -8,6 +8,8 @@ import { Actions as userActions } from 'store/ducks/user';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';
 
+import Bank from 'pages/Bank';
+
 import { signout } from 'utils/auth';
 
 class Main extends Component {
@@ -45,44 +47,10 @@ class Main extends Component {
               component={() => (
                 <>
                   <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
-                  <h1>Dashboard</h1>
                 </>
               )}
             />
-            <Route
-              exact
-              path="/account/banks"
-              component={() => (
-                <>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                  <h1>Banking</h1>
-                </>
-              )}
-            />
+            <Route exact path="/account/banks" component={Bank} />
           </div>
         </div>
       </>
