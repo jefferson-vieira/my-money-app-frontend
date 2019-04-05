@@ -1,0 +1,45 @@
+@import 'assets/scss/variables';
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+  &__menu {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    outline: none !important;
+    border: none;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__user {
+    text-align: right;
+    margin: 0;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-right: 1px solid #ccc;
+  }
+}
+
+.navbar {
+  padding-right: 0;
+
+  & ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

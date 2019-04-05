@@ -11,9 +11,7 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="container-fluid">
-          <Router />
-        </div>
+        <Router />
         <Toastr />
         <Loading show={loading} />
       </div>
