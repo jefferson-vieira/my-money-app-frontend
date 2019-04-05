@@ -7,7 +7,7 @@ const Navbar = ({ user = {}, logout }) => (
       <ul className="navbar-nav ml-auto">
         <li>
           <p className="header__user">
-            Olá, <b>{user.name ? user.name.split(' ').shift() : 'Hacker'}</b>
+            Olá, <b>{user.name.split(' ').shift()}</b>
           </p>
         </li>
         <li className="nav-item">
