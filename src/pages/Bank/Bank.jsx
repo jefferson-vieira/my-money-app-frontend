@@ -11,6 +11,7 @@ import List from './List';
 import { getBanks, addBank } from 'services/bank';
 
 import { showErrorModal } from 'utils/error';
+import { showSuccessModal } from 'utils/success';
 
 class Bank extends Component {
   state = {
@@ -48,6 +49,10 @@ class Bank extends Component {
     } finally {
       setLoading(false);
     }
+
+    await showSuccessModal('Conta adicionada com sucesso!');
+    this.setState({ showForm: false });
+    this.getBanks();
   };
 
   removeBank = bankId => {
