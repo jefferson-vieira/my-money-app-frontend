@@ -6,7 +6,10 @@ import {
   faUniversity,
   faChartLine,
   faBars,
-  faSignOutAlt
+  faSignOutAlt,
+  faDollarSign,
+  faPlusCircle,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -15,5 +18,8 @@ library.add(
   faUniversity,
   faChartLine,
   faBars,
-  faSignOutAlt
+  faSignOutAlt,
+  faDollarSign,
+  faPlusCircle,
+  faPlus
 );

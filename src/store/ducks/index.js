@@ -7,6 +7,7 @@ import { reducer as toastrReducer } from 'react-redux-toastr';
 
 import statusReducer from './status';
 import userReducer from './user';
+import bankReducer from './bank';
 
 const middlewares = [promise, thunk];
 
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   form: formReducer,
   toastr: toastrReducer,
   status: statusReducer,
-  user: userReducer
+  user: userReducer,
+  bank: bankReducer
 });
 
 const rootReducer = (state, action) => {

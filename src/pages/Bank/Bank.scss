@@ -1,0 +1,108 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/media';
+
+.bank {
+  &__form {
+    display: flex;
+    justify-content: center;
+
+    &__btn-group {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__card-group {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    & .card {
+      margin: 0.5rem;
+      height: 320px;
+
+      position: relative;
+      transition: 0.5s;
+
+      &:hover {
+        border-color: $primary !important;
+
+        & .card-btn-group {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &-body {
+        display: grid;
+        grid-template-rows: 1fr;
+      }
+
+      &-title {
+        margin-bottom: 2rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: $primary;
+      }
+
+      &-text {
+        & span {
+          font-weight: 600;
+        }
+      }
+
+      &-btn-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        transition: 0.5s;
+        transform: translateY(-20px);
+        transform-origin: top;
+        opacity: 0;
+        visibility: hidden;
+
+        & .btn {
+          width: 45%;
+        }
+      }
+
+      &-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+        color: $primary;
+
+        transition: 0.5s;
+
+        &:hover {
+          transform: scale(1.25);
+        }
+      }
+    }
+  }
+}
+
+.swal2-actions {
+  margin: 1rem 0 !important;
+  justify-content: space-around !important;
+
+  & button {
+    width: 45%;
+  }
+}

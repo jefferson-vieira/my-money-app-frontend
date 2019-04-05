@@ -8,6 +8,7 @@
     "paths": {
       "assets/*": ["src/assets/*"],
       "components/*": ["src/components/*"],
+      "services/*": ["src/services/*"],
       "configs/*": ["src/configs/*"],
       "pages/*": ["src/pages/*"],
       "routes/*": ["src/routes/*"],
