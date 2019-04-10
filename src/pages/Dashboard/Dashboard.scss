@@ -1,0 +1,13 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/media';
+
+.dashboard {
+  &__summary {
+    display: grid;
+    grid-template-columns: 100%;
+
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+  }
+}

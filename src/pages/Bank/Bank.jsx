@@ -8,8 +8,9 @@ import { Actions as bankActions } from 'store/ducks/bank';
 import Form from './Form';
 import List from './List';
 
-import { getBanks, addBank } from 'services/bank';
+import { getBanks, addBank, deleteBank } from 'services/bank';
 
+import Modal from 'configs/swal';
 import { showErrorModal } from 'utils/error';
 import { showSuccessModal } from 'utils/success';
 
@@ -35,8 +36,24 @@ class Bank extends Component {
     }
   };
 
-  handleForm = () => {
-    this.setState({ showForm: !this.state.showForm });
+  handleForm = async () => {
+    await Modal.fire({
+      target: '#modal',
+      title: 'Adicionar conta',
+      // html: <h1>asahsha</h1>,
+      html: <Form onSubmit={this.addBank} />,
+      confirmButtonColor: '#00c689',
+      confirmButtonText: 'Adicionar',
+      showCancelButton: true,
+      reverseButtons: true,
+      cancelButtonColor: '#dc3545',
+      cancelButtonText: 'Cancelar',
+      preConfirm: () => {
+        return false;
+      }
+    });
+
+    // this.setState({ showForm: !this.state.showForm });
   };
 
   addBank = async values => {
@@ -55,8 +72,19 @@ class Bank extends Component {
     this.getBanks();
   };
 
-  removeBank = bankId => {
-    alert('remove ' + bankId);
+  removeBank = async bankId => {
+    const { setLoading } = this.props;
+    try {
+      setLoading(true);
+      await deleteBank(bankId);
+    } catch (error) {
+      showErrorModal(error);
+    } finally {
+      setLoading(false);
+    }
+
+    await showSuccessModal('Conta removida com sucesso!');
+    this.getBanks();
   };
 
   render() {
@@ -68,8 +96,10 @@ class Bank extends Component {
         <h1>Contas</h1>
         <span>Gerencie suas contas bancárias</span>
         <hr />
-        {showForm ? (
-          <Form handleForm={this.handleForm} onSubmit={this.addBank} />
+        {false ? (
+          {
+            /* <Form handleForm={this.handleForm} onSubmit={this.addBank} /> */
+          }
         ) : (
           <List
             banks={banks}

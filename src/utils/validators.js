@@ -16,5 +16,8 @@ export const password = (value = '') =>
   !/\d+/.test(value) ||
   !/^[^\s]+$/.test(value);
 
+export const matchPassword = (value = '', allValues) =>
+  value !== allValues['password'];
+
 export const matchField = formField => (value = '', allValues) =>
   value !== allValues[formField];

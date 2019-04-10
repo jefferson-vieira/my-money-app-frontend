@@ -11,7 +11,7 @@ import FloatingLabelInput from 'components/FloatingLabelInput';
 
 import AuthType from './AuthType';
 
-import { required, name, email, password, matchField } from 'utils/validators';
+import { required, name, email, password, matchPassword } from 'utils/validators';
 import { signin, signup } from 'utils/auth';
 import { showErrorModal, showErrorToast } from 'utils/error';
 
@@ -110,7 +110,7 @@ class Auth extends Component {
                 name="confirmPassword"
                 type="password"
                 label="Confirme a senha"
-                validate={[required, password, matchField('password')]}
+                validate={[required, password, matchPassword]}
               />
             )}
             <div className="auth__actions">

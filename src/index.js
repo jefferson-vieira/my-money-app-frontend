@@ -3,12 +3,12 @@ import 'index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'configs';
+import './configs';
 
 import { Provider } from 'react-redux';
 import store from 'store/ducks';
 
-import App from 'App';
+import App from './App';
 
 import * as serviceWorker from 'serviceWorker';
 

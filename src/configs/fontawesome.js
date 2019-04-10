@@ -8,6 +8,8 @@ import {
   faBars,
   faSignOutAlt,
   faDollarSign,
+  faReceipt,
+  faCreditCard,
   faPlusCircle,
   faPlus
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +22,8 @@ library.add(
   faBars,
   faSignOutAlt,
   faDollarSign,
+  faReceipt,
+  faCreditCard,
   faPlusCircle,
   faPlus
 );
