@@ -15,7 +15,7 @@ const Router = () => (
   <BrowserRouter history={history}>
     <Switch>
       <Route exact path="/auth" component={Auth} />
-      <Route path="/me" component={Main} />
+      <PrivateRoute path="/me" component={Main} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

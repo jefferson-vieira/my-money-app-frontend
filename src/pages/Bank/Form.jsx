@@ -53,7 +53,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             validate={[required, number]}
             invalidFeedback="Apenas números inteiros e positivos"
           />
-          {/* <hr />
+          <hr />
           <div className="bank__form__btn-group">
             <button
               onClick={handleForm}
@@ -72,7 +72,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             >
               Adicionar
             </button>
-          </div> */}
+          </div>
         </form>
       </div>
     </div>

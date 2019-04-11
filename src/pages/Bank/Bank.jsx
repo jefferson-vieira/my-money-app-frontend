@@ -30,30 +30,14 @@ class Bank extends Component {
       const { data: banks } = await getBanks();
       setBanks(banks);
     } catch (error) {
-      showErrorModal(error);
+      showErrorModal(error, true).then(() => this.getBanks());
     } finally {
       setLoading(false);
     }
   };
 
   handleForm = async () => {
-    await Modal.fire({
-      target: '#modal',
-      title: 'Adicionar conta',
-      // html: <h1>asahsha</h1>,
-      html: <Form onSubmit={this.addBank} />,
-      confirmButtonColor: '#00c689',
-      confirmButtonText: 'Adicionar',
-      showCancelButton: true,
-      reverseButtons: true,
-      cancelButtonColor: '#dc3545',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        return false;
-      }
-    });
-
-    // this.setState({ showForm: !this.state.showForm });
+    this.setState({ showForm: !this.state.showForm });
   };
 
   addBank = async values => {
@@ -96,10 +80,8 @@ class Bank extends Component {
         <h1>Contas</h1>
         <span>Gerencie suas contas bancárias</span>
         <hr />
-        {false ? (
-          {
-            /* <Form handleForm={this.handleForm} onSubmit={this.addBank} /> */
-          }
+        {showForm ? (
+          <Form handleForm={this.handleForm} onSubmit={this.addBank} />
         ) : (
           <List
             banks={banks}

@@ -13,3 +13,11 @@ export async function addBank(bank) {
 export async function deleteBank(bankId) {
   return http.delete(`${endpoint}/${bankId}`);
 }
+
+export async function getSummary() {
+  return http.get(`${endpoint}/summary`);
+}
+
+export async function getSummaryByBank(bankId) {
+  return http.get(`${endpoint}/${bankId}/summary`).then(resp => resp.data);
+}
