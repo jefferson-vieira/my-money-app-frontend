@@ -5,10 +5,12 @@ import { bindActionCreators } from 'redux';
 import { Actions as statusActions } from 'store/ducks/status';
 import { Actions as bankActions } from 'store/ducks/bank';
 
+import Header from 'components/ContentHeader';
+
 import Form from './Form';
 import List from './List';
 
-import { getBanks, addBank } from 'services/bank';
+import { getBanks, addBank, deleteBank } from 'services/bank';
 
 import { showErrorModal } from 'utils/error';
 import { showSuccessModal } from 'utils/success';
@@ -24,39 +26,53 @@ class Bank extends Component {
 
   getBanks = async () => {
     const { setLoading, setBanks } = this.props;
+
     try {
       setLoading(true);
       const { data: banks } = await getBanks();
       setBanks(banks);
     } catch (error) {
-      showErrorModal(error);
+      showErrorModal(error, true).then(() => this.getBanks());
     } finally {
       setLoading(false);
     }
   };
 
-  handleForm = () => {
-    this.setState({ showForm: !this.state.showForm });
-  };
-
   addBank = async values => {
-    const { setLoading, user } = this.props;
+    const { setLoading } = this.props;
+
     try {
       setLoading(true);
-      await addBank({ ...values, userId: user.id });
+      await addBank(values);
+      showSuccessModal('Conta adicionada com sucesso!').then(() => {
+        this.setState({ showForm: false });
+        this.getBanks();
+      });
     } catch (error) {
       showErrorModal(error);
     } finally {
       setLoading(false);
     }
-
-    await showSuccessModal('Conta adicionada com sucesso!');
-    this.setState({ showForm: false });
-    this.getBanks();
   };
 
-  removeBank = bankId => {
-    alert('remove ' + bankId);
+  removeBank = async bankId => {
+    const { setLoading } = this.props;
+
+    try {
+      setLoading(true);
+      await deleteBank(bankId);
+      showSuccessModal('Conta removida com sucesso!').then(() => {
+        this.getBanks();
+      });
+    } catch (error) {
+      showErrorModal(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  handleForm = async () => {
+    this.setState({ showForm: !this.state.showForm });
   };
 
   render() {
@@ -65,9 +81,7 @@ class Bank extends Component {
 
     return (
       <section className="my-3">
-        <h1>Contas</h1>
-        <span>Gerencie suas contas bancárias</span>
-        <hr />
+        <Header primary="Contas" secondary="Gerencie suas contas bancárias" />
         {showForm ? (
           <Form handleForm={this.handleForm} onSubmit={this.addBank} />
         ) : (
@@ -83,8 +97,7 @@ class Bank extends Component {
 }
 
 const mapStateToProps = state => ({
-  banks: state.bank.banks,
-  user: state.user.user
+  banks: state.bank.banks
 });
 
 const mapDispatchToProps = dispatch =>

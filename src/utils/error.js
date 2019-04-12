@@ -1,12 +1,15 @@
 import Modal from 'configs/swal';
 import { toastr } from 'react-redux-toastr';
 
-export function showErrorModal(error) {
+export function showErrorModal(error, retry = false) {
   return Modal.fire({
     type: 'error',
     title: '<p>Ops...</p>',
     text: handleError(error),
-    confirmButtonColor: '#00c689'
+    confirmButtonColor: '#00c689',
+    confirmButtonText: retry ? 'Tentar novamente' : 'OK',
+    allowOutsideClick: !retry,
+    allowEscapeKey: !retry
   });
 }
 

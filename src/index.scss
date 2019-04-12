@@ -26,6 +26,12 @@ code {
     monospace;
 }
 
+#root,
+.wrapper,
+.content {
+  overflow: auto;
+}
+
 .wrapper {
   display: flex;
 }
@@ -34,5 +40,5 @@ code {
   background-color: #eee;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  min-width: 320px;
 }

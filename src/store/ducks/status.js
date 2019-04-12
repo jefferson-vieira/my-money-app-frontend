@@ -1,6 +1,10 @@
 import { createActions, createReducer } from 'reduxsauce';
 
-const INITIAL_STATE = { loading: false, error: false, redirect: '/account/dashboard' };
+const INITIAL_STATE = {
+  loading: false,
+  error: false,
+  redirect: '/me/dashboard'
+};
 
 const setError = (state = INITIAL_STATE, { status }) => ({
   ...state,

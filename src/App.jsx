@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Router from 'routes';
 import Toastr from 'components/templates/Toastr';
-import Loading from 'components/Loading';
+import Loading from 'components/templates/Loading';
 
 class App extends Component {
   render() {
@@ -13,6 +13,7 @@ class App extends Component {
       <div className="wrapper">
         <Router />
         <Toastr />
+        <div id="modal" />
         <Loading show={loading} />
       </div>
     );

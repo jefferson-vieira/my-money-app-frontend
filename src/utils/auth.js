@@ -59,7 +59,7 @@ export async function validateAuthentication() {
   const token = getToken();
   if (!token) return false;
 
-  const { data: user } = await http.get('/users/me');
+  const { data: user } = await http.get('/me');
   if (!user) deleteToken();
 
   return user;

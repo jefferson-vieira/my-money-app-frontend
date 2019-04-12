@@ -8,6 +8,7 @@ import { Actions as userActions } from 'store/ducks/user';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';
 
+import Dashboard from 'pages/Dashboard';
 import Bank from 'pages/Bank';
 
 import { signout } from 'utils/auth';
@@ -41,16 +42,8 @@ class Main extends Component {
             loggout={this.handleSignout}
           />
           <div className="container-fluid">
-            <Route
-              exact
-              path="/account/dashboard"
-              component={() => (
-                <>
-                  <h1>Dashboard</h1>
-                </>
-              )}
-            />
-            <Route exact path="/account/banks" component={Bank} />
+            <Route exact path="/me/dashboard" component={Dashboard} />
+            <Route exact path="/me/banks" component={Bank} />
           </div>
         </div>
       </>

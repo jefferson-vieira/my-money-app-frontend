@@ -1,0 +1,63 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/media';
+
+.dashboard {
+  &__summary {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__balance {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    & .card {
+      margin: 1rem;
+
+      &,
+      &-header {
+        transition: 0.5s;
+      }
+
+      &:hover {
+        &,
+        & .card-header {
+          border-color: $primary;
+        }
+      }
+
+      &-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & i,
+        & svg {
+          width: 20px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
