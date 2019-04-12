@@ -8,7 +8,7 @@ import { Actions as bankActions } from 'store/ducks/bank';
 import Summary from './Summary';
 import Balance from './Balance';
 
-import { getBanks, getSummary, getSummaryByBank } from 'services/bank';
+import { getSummary, getBanksWithSummary } from 'services/bank';
 
 import { showErrorModal } from 'utils/error';
 
@@ -18,22 +18,18 @@ class Dashboard extends Component {
   }
 
   loadDashboard = async () => {
-    const { setLoading, setSummary, setBanks, setBanksSummaries } = this.props;
+    const { setLoading, setSummary, setBanks } = this.props;
+
     try {
       setLoading(true);
 
-      const [{ data: summary }, { data: banks }] = await Promise.all([
+      const [{ data: summary }, banks] = await Promise.all([
         getSummary(),
-        getBanks()
+        getBanksWithSummary()
       ]);
-
-      const banksSummaries = await Promise.all(
-        banks.map(bank => getSummaryByBank(bank.id))
-      );
 
       setSummary(summary);
       setBanks(banks);
-      setBanksSummaries(banksSummaries);
     } catch (error) {
       showErrorModal(error, true).then(this.loadDashboard);
     } finally {
@@ -42,13 +38,12 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { summary = {}, banks = [], banksSummaries = [] } = this.props;
-    console.log(banksSummaries);
+    const { summary = {}, banks = [] } = this.props;
 
     return (
       <section className="my-3">
         <Summary summary={summary} />
-        <Balance banks={banks} banksSummaries={banksSummaries} />
+        <Balance banks={banks} />
       </section>
     );
   }
@@ -56,8 +51,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   summary: state.bank.summary,
-  banks: state.bank.banks,
-  banksSummaries: state.bank.banksSummaries
+  banks: state.bank.banks
 });
 
 const mapDispatchToProps = dispatch =>

@@ -12,19 +12,12 @@ const setBanks = (state = INITIAL_STATE, { banks }) => ({
   banks
 });
 
-const setBanksSummaries = (state = INITIAL_STATE, { banksSummaries }) => ({
-  ...state,
-  banksSummaries
-});
-
 export const { Types, Creators: Actions } = createActions({
   setSummary: ['summary'],
-  setBanks: ['banks'],
-  setBanksSummaries: ['banksSummaries']
+  setBanks: ['banks']
 });
 
 export default createReducer(INITIAL_STATE, {
   [Types.SET_SUMMARY]: setSummary,
-  [Types.SET_BANKS]: setBanks,
-  [Types.SET_BANKS_SUMMARIES]: setBanksSummaries
+  [Types.SET_BANKS]: setBanks
 });

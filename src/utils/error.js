@@ -7,7 +7,7 @@ export function showErrorModal(error, retry = false) {
     title: '<p>Ops...</p>',
     text: handleError(error),
     confirmButtonColor: '#00c689',
-    confirmButtonText: retry ? 'Recarregar' : 'OK',
+    confirmButtonText: retry ? 'Tentar novamente' : 'OK',
     allowOutsideClick: !retry,
     allowEscapeKey: !retry
   });

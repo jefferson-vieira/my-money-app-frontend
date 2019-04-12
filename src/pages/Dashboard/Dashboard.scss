@@ -4,10 +4,10 @@
 .dashboard {
   &__summary {
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
 
     @include media-breakpoint-up(xl) {
-      grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 

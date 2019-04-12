@@ -1,6 +1,7 @@
 .value-box {
   display: flex;
   align-items: center;
+  overflow: auto;
 
   color: #fff;
   margin: 1rem;
@@ -29,14 +30,12 @@
     margin: 1rem;
     padding-left: 2rem;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
-    overflow: hidden;
 
     & h1,
     & h3 {
       font-weight: normal;
+      padding-right: 3rem;
       white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
 
     & h3 {

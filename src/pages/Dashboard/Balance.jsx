@@ -4,19 +4,15 @@ import Header from 'components/ContentHeader';
 
 import Card from './Card';
 
-const Balance = ({ banks, banksSummaries }) => (
+const Balance = ({ banks }) => (
   <>
     <Header
       primary="Balanço"
       secondary="Veja o resumo das suas contas bancárias"
     />
     <section className="dashboard__balance">
-      {banks.map((bank, index) => (
-        <Card
-          key={index}
-          bankingAccount={bank}
-          summary={banksSummaries[index]}
-        />
+      {banks.map(bank => (
+        <Card key={bank.id} bankingAccount={bank} />
       ))}
     </section>
   </>
