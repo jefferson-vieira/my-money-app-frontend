@@ -9,14 +9,16 @@ import Logo from 'components/Logo';
 
 import AuthType from './AuthType';
 
-import Form from './Form';
+// import Form from './Form';
+import NewForm from './Register/Form';
 
 import { signin, signup } from 'utils/auth';
 import { showErrorModal } from 'utils/error';
+import Actions from './Actions';
 
 class Auth extends Component {
   state = {
-    authType: AuthType.SIGNIN
+    authType: AuthType.SIGNUP
   };
 
   changeAuthType = () => {
@@ -33,22 +35,24 @@ class Auth extends Component {
   };
 
   onSubmit = async values => {
-    const { setLoading, setUser, history, redirect } = this.props;
+    console.log(values);
 
-    try {
-      setLoading(true);
+    // const { setLoading, setUser, history, redirect } = this.props;
 
-      const user = this.needsAccount()
-        ? await signup(values)
-        : await signin(values);
-      setUser(user);
+    // try {
+    //   setLoading(true);
 
-      history.push(redirect);
-    } catch (error) {
-      showErrorModal(error);
-    } finally {
-      setLoading(false);
-    }
+    //   const user = this.needsAccount()
+    //     ? await signup(values)
+    //     : await signin(values);
+    //   setUser(user);
+
+    //   history.push(redirect);
+    // } catch (error) {
+    //   showErrorModal(error);
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   render() {
@@ -62,11 +66,19 @@ class Auth extends Component {
             <hr />
           </div>
           <h2 className="auth__title">{authType}</h2>
-          <Form
+          {/* <Form
             authType={authType}
             changeAuthType={this.changeAuthType}
             needsAccount={this.needsAccount()}
             onSubmit={this.onSubmit}
+          /> */}
+
+          <NewForm onSubmit={this.onSubmit} />
+          <Actions
+            authType={authType}
+            changeAuthType={this.changeAuthType}
+            needsAccount={this.needsAccount()}
+            valid={false}
           />
         </div>
       </section>

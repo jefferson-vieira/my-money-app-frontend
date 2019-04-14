@@ -16,7 +16,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px;
+      margin: 3rem 0;
+      width: 600px;
       border-radius: 10px;
     }
 
@@ -30,6 +31,10 @@
 
     & form {
       width: 100%;
+
+      & legend {
+        margin-bottom: 2rem;
+      }
     }
   }
 

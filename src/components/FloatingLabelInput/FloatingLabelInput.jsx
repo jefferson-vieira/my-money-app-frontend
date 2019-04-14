@@ -9,11 +9,13 @@ export default ({
   name,
   type,
   autoComplete,
+  className,
   label,
+  maxlength,
   meta: { touched, error },
   validateMessage
 }) => (
-  <div className="floating-label-input">
+  <div className={classnames('floating-label-input', className)}>
     <input
       {...input}
       id={id}
@@ -25,6 +27,7 @@ export default ({
         'is-valid': !error,
         'is-invalid': touched && error
       })}
+      maxLength={maxlength}
     />
     <label htmlFor={id}>{label}</label>
     <Fade show={!!validateMessage}>
