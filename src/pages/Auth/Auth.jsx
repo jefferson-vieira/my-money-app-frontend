@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Actions as userActions } from 'store/ducks/user';
 import { Actions as statusActions } from 'store/ducks/status';
 
-import Logo from 'components/Logo';
+import Logo from 'components/templates/Logo';
 
 import AuthType from './AuthType';
 

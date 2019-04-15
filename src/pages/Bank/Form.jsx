@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-import LabelInput from 'components/LabelInput';
+import LabelInput from 'components/forms/Input';
 
 import { required, name, number } from 'utils/validators';
 import { showErrorToast } from 'utils/error';

@@ -11,7 +11,9 @@ import {
   faReceipt,
   faCreditCard,
   faPlusCircle,
-  faPlus
+  faPlus,
+  faEye,
+  faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -25,5 +27,7 @@ library.add(
   faReceipt,
   faCreditCard,
   faPlusCircle,
-  faPlus
+  faPlus,
+  faEye,
+  faEyeSlash
 );

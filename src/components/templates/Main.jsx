@@ -5,8 +5,8 @@ import { Route } from 'react-router';
 
 import { Actions as userActions } from 'store/ducks/user';
 
-import Sidebar from 'components/Sidebar';
-import Header from 'components/Header';
+import Sidebar from 'components/templates/Sidebar';
+import Header from 'components/templates/Header';
 
 import Dashboard from 'pages/Dashboard';
 import Bank from 'pages/Bank';

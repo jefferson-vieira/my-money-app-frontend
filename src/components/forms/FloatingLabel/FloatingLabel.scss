@@ -58,4 +58,24 @@
     z-index: -1;
     cursor: text;
   }
+
+  &--password {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: transparent;
+      border: none;
+      outline: none !important;
+      z-index: 1;
+
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.25);
+      }
+    }
+  }
 }

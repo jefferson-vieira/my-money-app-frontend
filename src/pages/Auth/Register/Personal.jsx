@@ -1,20 +1,11 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-import FloatingLabelInput from 'components/FloatingLabelInput';
+import FloatingLabelInput from 'components/forms/FloatingLabel/Input';
 
-import {
-  required,
-  name,
-  beforeOrEqual,
-  cpf,
-  password,
-  matchField
-} from 'utils/validators';
+import { required, name, beforeOrEqual, cpf } from 'utils/validators';
 
-const matchPassword = matchField('password');
-
-export default () => (
+const Personal = () => (
   <fieldset>
     <legend>Pessoal</legend>
     <div className="row">
@@ -58,42 +49,13 @@ export default () => (
           component={FloatingLabelInput}
           id="inputUserCpf"
           name="cpf"
-          type="number"
+          type="text"
           label="CPF (apenas números)"
           validate={[required, cpf]}
         />
       </div>
     </div>
-    <div className="row">
-      <div className="col-12 col-md-6">
-        <Field
-          component={FloatingLabelInput}
-          className="mb-md-3"
-          id="inputUserPassword"
-          name="password"
-          type="password"
-          autoComplete="new-password"
-          label="Senha"
-          validate={[required, password]}
-        />
-      </div>
-      <div className="col-12 col-md-6">
-        <Field
-          component={FloatingLabelInput}
-          className="mb-3"
-          id="inputUserConfirmPassword"
-          name="confirmPassword"
-          type="password"
-          label="Confirme a senha"
-          validate={[required, password, matchPassword]}
-        />
-      </div>
-      <div className="col-12">
-        <small className="form-text text-muted text-center mb-4">
-          A senha deve ter entre 8 e 16 caracteres e conter letras, números e
-          símbolos
-        </small>
-      </div>
-    </div>
   </fieldset>
 );
+
+export default Personal;

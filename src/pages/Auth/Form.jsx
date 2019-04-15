@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-import FloatingLabelInput from 'components/FloatingLabelInput';
+import FloatingLabelInput from 'components/forms/FloatingLabelInput';
 
 import {
   required,

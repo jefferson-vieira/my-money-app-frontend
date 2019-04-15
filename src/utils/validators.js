@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const required = (value = '') => !value.replace(/\s+/, ' ').trim();
+export const required = (value = '') => (!value.replace(/\s+/, ' ').trim()) ? 'Vazio' : undefined;
 
 export const name = (value = '') => !/^[a-zA-ZÀ-ÿ ]+$/.test(value);
 
@@ -51,7 +51,7 @@ const isValidCpf = value => {
   return result === +validate.charAt(1);
 };
 
-export const tel = (value = '') => value.length !== 10 || !isNaN(Number(value));
+export const tel = (value = '') => value.length !== 10 || isNaN(Number(value));
 
 export const cel = (value = '') =>
   value.length !== 11 || +value.charAt(2) !== 9 || isNaN(Number(value));
