@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-import FloatingLabelInput from 'components/forms/FloatingLabel/Input';
+import FloatingLabelInput from 'components/forms/FloatingLabel/GeneralInput';
 import FloatingLabelPasswordInput from 'components/forms/FloatingLabel/PasswordInput';
 
 import { required, email, password, matchField } from 'utils/validators';

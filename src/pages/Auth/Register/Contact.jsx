@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field } from 'redux-form';
 
-import FloatingLabelInput from 'components/forms/FloatingLabel/Input';
+import FloatingLabelInput from 'components/forms/FloatingLabel/GeneralInput';
 
 import {
   required,
-  cep,
+  postalCode,
   name,
   number,
   letters,
@@ -35,7 +35,7 @@ const Contact = ({ getAddress, change, touch }) => {
             type="text"
             autoComplete="postal-code"
             label="CEP"
-            validate={[required, cep]}
+            validate={[required, postalCode]}
             onBlur={handleAddress}
           />
         </div>
@@ -105,7 +105,7 @@ const Contact = ({ getAddress, change, touch }) => {
             type="tel"
             autoComplete="tel-national"
             label="DDD + Telefone (apenas números)"
-            validate={[required, tel]}
+            validate={[required, number, tel]}
           />
         </div>
         <div className="col-12 col-md-6">
@@ -116,7 +116,7 @@ const Contact = ({ getAddress, change, touch }) => {
             type="tel"
             autoComplete="tel-national"
             label="DDD + Celular (apenas números)"
-            validate={[required, cel]}
+            validate={[required, number, cel]}
           />
         </div>
       </div>

@@ -9,8 +9,8 @@ import Logo from 'components/templates/Logo';
 
 import AuthType from './AuthType';
 
-// import Form from './Form';
-import NewForm from './Register/Form';
+import Register from './Register/Form';
+import Login from './Login';
 
 import { signin, signup } from 'utils/auth';
 import { showErrorModal } from 'utils/error';
@@ -60,26 +60,29 @@ class Auth extends Component {
 
     return (
       <section id="auth" className="auth">
-        <div className="auth__card">
+        <div
+          className={`auth__card auth__card--${
+            this.needsAccount() ? 'register' : 'login'
+          }`}
+        >
           <div className="auth__logo">
             <Logo />
             <hr />
           </div>
-          <h2 className="auth__title">{authType}</h2>
-          {/* <Form
-            authType={authType}
-            changeAuthType={this.changeAuthType}
-            needsAccount={this.needsAccount()}
-            onSubmit={this.onSubmit}
-          /> */}
-
-          <NewForm onSubmit={this.onSubmit} />
-          <Actions
-            authType={authType}
-            changeAuthType={this.changeAuthType}
-            needsAccount={this.needsAccount()}
-            valid={false}
-          />
+          <div className="auth__form">
+            <h2 className="auth__title">{authType}</h2>
+            {this.needsAccount() ? (
+              <Register onSubmit={this.onSubmit} />
+            ) : (
+              <Login onSubmit={this.onSubmit} />
+            )}
+            <Actions
+              authType={authType}
+              changeAuthType={this.changeAuthType}
+              needsAccount={this.needsAccount()}
+              valid={false}
+            />
+          </div>
         </div>
       </section>
     );

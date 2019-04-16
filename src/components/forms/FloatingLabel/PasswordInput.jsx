@@ -3,7 +3,7 @@ import './FloatingLabel.scss';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Input from './Input';
+import Input from './GeneralInput';
 
 const PasswordInput = props => {
   const [showPassword, toggleShowPassword] = useState(false);
