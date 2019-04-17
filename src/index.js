@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './configs';
 
 import { Provider } from 'react-redux';
-import store from 'store/ducks';
+import store from './store';
 
 import App from './App';
 

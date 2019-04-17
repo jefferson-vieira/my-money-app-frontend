@@ -11,7 +11,7 @@ import Header from 'components/templates/Header';
 import Dashboard from 'pages/Dashboard';
 import Bank from 'pages/Bank';
 
-import { signout } from 'utils/auth';
+import { logout } from 'utils/auth';
 
 class Main extends Component {
   state = {
@@ -23,8 +23,8 @@ class Main extends Component {
   };
 
   handleSignout = () => {
-    signout();
-    this.props.signout();
+    logout();
+    this.props.logout();
     this.props.history.push('/auth');
   };
 
@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ signout: userActions.signout }, dispatch);
+  bindActionCreators({ logout: userActions.logout }, dispatch);
 
 Main = connect(
   mapStateToProps,

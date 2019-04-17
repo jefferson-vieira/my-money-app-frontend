@@ -1,88 +1,70 @@
 import React, { Component } from 'react';
+import classnames from 'classnames'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as userActions } from 'store/ducks/user';
 import { Actions as statusActions } from 'store/ducks/status';
 
-import Logo from 'components/templates/Logo';
+import Logo from './Logo';
+import Form from './Form';
 
 import AuthType from './AuthType';
 
-import Register from './Register/Form';
-import Login from './Login';
-
-import { signin, signup } from 'utils/auth';
+import { login, register } from 'utils/auth';
 import { showErrorModal } from 'utils/error';
-import Actions from './Actions';
 
 class Auth extends Component {
   state = {
-    authType: AuthType.SIGNUP
+    authType: AuthType.LOGIN
   };
 
   changeAuthType = () => {
     this.setState({
       authType:
-        this.state.authType === AuthType.SIGNIN
-          ? AuthType.SIGNUP
-          : AuthType.SIGNIN
+        this.state.authType === AuthType.LOGIN
+          ? AuthType.REGISTER
+          : AuthType.LOGIN
     });
   };
 
   needsAccount = () => {
-    return this.state.authType === AuthType.SIGNUP;
+    return this.state.authType === AuthType.REGISTER;
   };
 
   onSubmit = async values => {
-    console.log(values);
+    const { setLoading, setUser, history, redirect } = this.props;
 
-    // const { setLoading, setUser, history, redirect } = this.props;
+    try {
+      setLoading(true);
 
-    // try {
-    //   setLoading(true);
+      const user = this.needsAccount()
+        ? await register(values)
+        : await login(values);
+      setUser(user);
 
-    //   const user = this.needsAccount()
-    //     ? await signup(values)
-    //     : await signin(values);
-    //   setUser(user);
-
-    //   history.push(redirect);
-    // } catch (error) {
-    //   showErrorModal(error);
-    // } finally {
-    //   setLoading(false);
-    // }
+      history.push(redirect);
+    } catch (error) {
+      showErrorModal(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   render() {
     const { authType } = this.state;
+    const needsAccount = this.needsAccount();
 
     return (
       <section id="auth" className="auth">
-        <div
-          className={`auth__card auth__card--${
-            this.needsAccount() ? 'register' : 'login'
-          }`}
-        >
-          <div className="auth__logo">
-            <Logo />
-            <hr />
-          </div>
-          <div className="auth__form">
-            <h2 className="auth__title">{authType}</h2>
-            {this.needsAccount() ? (
-              <Register onSubmit={this.onSubmit} />
-            ) : (
-              <Login onSubmit={this.onSubmit} />
-            )}
-            <Actions
-              authType={authType}
-              changeAuthType={this.changeAuthType}
-              needsAccount={this.needsAccount()}
-              valid={false}
-            />
-          </div>
+        <div className={classnames('auth__card', `auth__card--${needsAccount ? 'register':'login'}`)}>
+          <Logo />
+          <Form
+            authType={authType}
+            needsAccount={needsAccount}
+            changeAuthType={this.changeAuthType}
+            onSubmit={this.onSubmit}
+          />
         </div>
       </section>
     );

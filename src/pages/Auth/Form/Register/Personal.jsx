@@ -51,6 +51,7 @@ const Personal = () => (
           name="cpf"
           type="text"
           label="CPF (apenas números)"
+          maxLength={11}
           validate={[required, cpf]}
         />
       </div>

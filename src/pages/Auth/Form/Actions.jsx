@@ -2,8 +2,14 @@ import React from 'react';
 
 import { showErrorToast } from 'utils/error';
 
-export default ({ authType, changeAuthType, needsAccount, valid }) => (
+const Actions = ({ needsAccount, changeAuthType, valid }) => (
   <div className="auth__actions">
+    {!needsAccount && (
+          <button className="btn btn-link">
+            Esqueceu a senha? Clique aqui!
+          </button>
+    )}
+    <br />
     <button
       type="button"
       className="btn btn-outline-secondary"
@@ -16,6 +22,7 @@ export default ({ authType, changeAuthType, needsAccount, valid }) => (
           ? 'Se já tiver conta, acesse ela clicando aqui!'
           : 'Se não tiver conta, crie uma clicando aqui!'
       }
+      tabIndex="-1"
     >
       {needsAccount ? 'Entrar' : 'Criar conta'}
     </button>
@@ -27,7 +34,9 @@ export default ({ authType, changeAuthType, needsAccount, valid }) => (
       className="btn btn-primary"
       title="Efetuar acesso"
     >
-      {authType}
+      {needsAccount ? 'Criar conta' : 'Entrar'}
     </button>
   </div>
 );
+
+export default Actions;

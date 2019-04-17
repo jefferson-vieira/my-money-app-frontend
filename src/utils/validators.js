@@ -4,8 +4,6 @@ export const required = (value = '') => !value.replace(/\s+/, ' ').trim();
 
 export const name = (value = '') => !/^[a-zA-ZÀ-ÿ ]+$/.test(value);
 
-export const letters = (value = '') => !/^[a-zA-Z]+$/.test(value);
-
 export const number = (value = '') => !/^\d+$/.test(value) || Number(value) < 0;
 
 export const email = (value = '') =>
@@ -54,3 +52,5 @@ export const cel = (value = '') =>
   value.length !== 11 || +value.charAt(2) !== 9;
 
 export const postalCode = (value = '') => !/^[\d]{5}[-]{1}[\d]{3}$/.test(value);
+
+export const state = (value = '') => !/^[a-zA-Z]{2}$/.test(value);

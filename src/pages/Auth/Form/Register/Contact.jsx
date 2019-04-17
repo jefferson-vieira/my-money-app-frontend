@@ -8,7 +8,7 @@ import {
   postalCode,
   name,
   number,
-  letters,
+  state,
   tel,
   cel
 } from 'utils/validators';
@@ -36,6 +36,7 @@ const Contact = ({ getAddress, change, touch }) => {
             autoComplete="postal-code"
             label="CEP"
             validate={[required, postalCode]}
+            maxLength={9}
             onBlur={handleAddress}
           />
         </div>
@@ -92,7 +93,8 @@ const Contact = ({ getAddress, change, touch }) => {
             autoComplete="address-level1"
             label="Estado"
             maxLength="2"
-            validate={[required, letters]}
+            normalize={value => value.toUpperCase()}
+            validate={[required, state]}
           />
         </div>
       </div>
@@ -105,6 +107,7 @@ const Contact = ({ getAddress, change, touch }) => {
             type="tel"
             autoComplete="tel-national"
             label="DDD + Telefone (apenas números)"
+            maxLength={10}
             validate={[required, number, tel]}
           />
         </div>
@@ -116,6 +119,7 @@ const Contact = ({ getAddress, change, touch }) => {
             type="tel"
             autoComplete="tel-national"
             label="DDD + Celular (apenas números)"
+            maxLength={11}
             validate={[required, number, cel]}
           />
         </div>

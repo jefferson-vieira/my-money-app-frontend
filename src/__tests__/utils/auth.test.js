@@ -3,9 +3,9 @@ import axios from 'axios';
 
 import {
   initAuthInterceptor,
-  signin,
-  signup,
-  signout,
+  login,
+  register,
+  logout,
   validateAuthentication
 } from 'utils/auth';
 
@@ -72,32 +72,32 @@ describe('Testing auth utils...', () => {
   });
 
   it('showld can do login', async () => {
-    const user = await signin(userMock);
+    const user = await login(userMock);
 
     expect(user).toEqual(userMock);
   });
 
   it('showld can do register', async () => {
-    const user = await signup(userMock);
+    const user = await register(userMock);
 
     expect(user).toEqual(userMock);
   });
 
   it('showld can do logout', async () => {
     localStorage.setItem(AUTH_KEY, JSON.stringify(oAuthToken));
-    signout();
+    logout();
     const token = JSON.parse(localStorage.getItem(AUTH_KEY));
     expect(token).toBeFalsy();
   });
 
   it('showld validate authentication after auth', async () => {
-    await signin(userMock);
+    await login(userMock);
     const userLogin = await validateAuthentication();
     expect(userLogin).toEqual(userMock);
 
-    signout();
+    logout();
 
-    await signup(userMock);
+    await register(userMock);
     const userRegister = await validateAuthentication();
     expect(userRegister).toEqual(userMock);
   });
