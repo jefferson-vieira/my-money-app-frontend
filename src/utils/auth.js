@@ -1,5 +1,4 @@
-import http from './http';
-import qs from 'qs';
+import * as auth from 'services/auth';
 
 const { REACT_APP_AUTH_KEY: AUTH_KEY } = process.env;
 
@@ -20,6 +19,7 @@ export function initAuthInterceptor(instance) {
   instance.interceptors.request.use(
     config => {
       let token = getToken();
+      debugger
       if (token) config.headers.Authorization = token;
       return config;
     },
@@ -29,29 +29,18 @@ export function initAuthInterceptor(instance) {
   );
 }
 
-export async function signin(user) {
-  const response = await http.post(
-    '/login',
-    qs.stringify({
-      username: user.email,
-      password: user.password
-    }),
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }
-  );
+export async function login(user) {
+  const response = await auth.login(user);
   saveToken(response.headers.authorization);
   return validateAuthentication();
 }
 
-export async function signup(user) {
-  await http.post('/register', user);
-  return signin(user);
+export async function register(user) {
+  await auth.register(user);
+  return login(user);
 }
 
-export async function signout() {
+export async function logout() {
   deleteToken();
 }
 
@@ -59,7 +48,7 @@ export async function validateAuthentication() {
   const token = getToken();
   if (!token) return false;
 
-  const { data: user } = await http.get('/me');
+  const { data: user } = await auth.getLoggedUser();
   if (!user) deleteToken();
 
   return user;
