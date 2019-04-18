@@ -19,7 +19,7 @@ const Login = () => (
     />
     <Field
       component={FloatingLabelPasswordInput}
-      className="mb-5"
+      className="mb-3"
       id="inputUserPassword"
       name="password"
       autoComplete="new-password"

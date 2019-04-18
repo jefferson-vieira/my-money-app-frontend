@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { Router as BrowserRouter } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
@@ -14,6 +14,7 @@ import Main from 'components/templates/Main';
 const Router = () => (
   <BrowserRouter history={history}>
     <Switch>
+      <Route exact path="/" render={() => <Redirect to="/auth" />} />
       <Route exact path="/auth" component={Auth} />
       <PrivateRoute path="/me" component={Main} />
       <Route component={NotFound} />

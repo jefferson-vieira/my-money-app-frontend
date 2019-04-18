@@ -2,14 +2,19 @@ import React from 'react';
 
 import { showErrorToast } from 'utils/error';
 
-const Actions = ({ needsAccount, changeAuthType, valid }) => (
+const Actions = ({ needsAccount, changePassword, toggleAuthType, valid }) => (
   <div className="auth__actions">
+    {!needsAccount && (
+      <button type="button" className="btn btn-link w-100 mb-3" onClick={changePassword}>
+        Esqueceu a senha? Clique aqui!
+      </button>
+    )}
     <button
       type="button"
       className="btn btn-outline-secondary"
       onClick={e => {
         e.target.blur();
-        changeAuthType();
+        toggleAuthType();
       }}
       title={
         needsAccount

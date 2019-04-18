@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classnames from 'classnames';
 
 import Navbar from './Navbar';
 
@@ -12,7 +11,15 @@ const Header = ({ sidebar: [showSidebar, toggleSidebar], user, loggout }) => (
       title={showSidebar ? 'Fechar menu' : 'Abir menu'}
       className="header__menu"
     >
-      <FontAwesomeIcon icon="bars" size="2x" />
+      <div
+        className={classnames('header__toggle-sidebar', {
+          active: showSidebar
+        })}
+      >
+        <span />
+        <span />
+        <span />
+      </div>
     </button>
     <Navbar user={user} logout={loggout} />
   </nav>

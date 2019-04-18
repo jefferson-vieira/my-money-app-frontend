@@ -23,3 +23,7 @@ export async function register(user) {
 export async function getLoggedUser() {
   return http.get('/me');
 }
+
+export function changePassword(email) {
+  return http.get('https://httpstat.us/200');
+}

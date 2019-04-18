@@ -33,6 +33,35 @@
     padding: 0.5rem 1rem 0.5rem 0.5rem;
     border-right: 1px solid #ccc;
   }
+
+  &__toggle-sidebar {
+    & span {
+      width: 34px;
+      height: 4px;
+      background-color: $primary;
+      display: block;
+      transition: 0.5s;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        margin-bottom: 6px;
+      }
+    }
+
+    &.active {
+      & span:nth-child(1) {
+        transform: rotateZ(-45deg) translate(-7px, 7px);
+      }
+
+      & span:nth-child(2) {
+        opacity: 0;
+      }
+
+      & span:nth-child(3) {
+        transform: rotateZ(45deg) translate(-7px, -7px);
+      }
+    }
+  }
 }
 
 .navbar {

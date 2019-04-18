@@ -14,19 +14,10 @@
 
   &__card-group {
     display: grid;
-    grid-template-columns: 1fr;
-
-    @include media-breakpoint-up(md) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @include media-breakpoint-up(lg) {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    @include media-breakpoint-up(xl) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+    @include grid(xs, 1);
+    @include grid(md, 2);
+    @include grid(lg, 3);
+    @include grid(xl, 4);
 
     & .card {
       margin: 0.5rem;

@@ -13,7 +13,6 @@ class App extends Component {
       <div className="wrapper">
         <Router />
         <Toastr />
-        <div id="modal" />
         <Loading show={loading} />
       </div>
     );

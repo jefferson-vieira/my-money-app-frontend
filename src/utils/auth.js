@@ -19,7 +19,6 @@ export function initAuthInterceptor(instance) {
   instance.interceptors.request.use(
     config => {
       let token = getToken();
-      debugger
       if (token) config.headers.Authorization = token;
       return config;
     },

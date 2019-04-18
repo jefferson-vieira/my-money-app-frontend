@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
 
+import Fade from 'components/animations/Fade';
+
 import Login from './Form/Login';
 import Register from './Form/Register';
 import Actions from './Form/Actions';
@@ -11,7 +13,6 @@ import { getAddress } from 'services/address';
 import { showInfoToast } from 'utils/info';
 import { showSuccessToast } from 'utils/success';
 import { showErrorToast } from 'utils/error';
-import Fade from 'components/animations/Fade';
 
 class Form extends Component {
   getAddress = async () => {
@@ -32,7 +33,8 @@ class Form extends Component {
     const {
       authType,
       needsAccount,
-      changeAuthType,
+      toggleAuthType,
+      changePassword,
       handleSubmit,
       onSubmit,
       change,
@@ -52,11 +54,12 @@ class Form extends Component {
             />
           </Fade>
           <Fade show={!needsAccount}>
-            <Login onSubmit={onSubmit} />
+            <Login />
           </Fade>
           <Actions
             needsAccount={needsAccount}
-            changeAuthType={changeAuthType}
+            toggleAuthType={toggleAuthType}
+            changePassword={changePassword}
             valid={valid}
           />
         </form>
