@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Actions as userActions } from 'store/ducks/user';
 
 import Sidebar from 'components/templates/Sidebar';
 import Header from 'components/templates/Header';
+import Breadcrumb from './Breadcrumb';
 
 import Dashboard from 'pages/Dashboard';
 import Bank from 'pages/Bank';
@@ -41,6 +42,7 @@ class Main extends Component {
             user={user}
             loggout={this.handleSignout}
           />
+          <Breadcrumb />
           <div className="container-fluid">
             <Route exact path="/me/dashboard" component={Dashboard} />
             <Route exact path="/me/banks" component={Bank} />

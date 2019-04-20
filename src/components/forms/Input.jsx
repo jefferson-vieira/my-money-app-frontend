@@ -17,7 +17,7 @@ const Input = ({
         touched && (error ? 'is-invalid' : 'is-valid')
       )}
     />
-    <div className="invalid-feedback">{props.invalidFeedback}</div>
+    <div className="invalid-feedback">{props.invalidfeedback}</div>
   </div>
 );
 

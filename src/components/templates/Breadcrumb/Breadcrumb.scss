@@ -1,0 +1,10 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  background-color: #ddd;
+
+  &-item::before {
+    content: '>' !important;
+    padding-right: 0.5rem;
+  }
+}

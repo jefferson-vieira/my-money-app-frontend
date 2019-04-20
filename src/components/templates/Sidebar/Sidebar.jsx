@@ -12,7 +12,7 @@ const Sidebar = ({ show }) => (
     <nav className={classnames('sidebar', { active: show })}>
       <div className="sidebar__container">
         <div className="sidebar__header">
-          <NavLink to="/dashboard">
+          <NavLink to="/me/dashboard">
             <Logo />
           </NavLink>
         </div>
