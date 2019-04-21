@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Router from 'routes';
+import Router from './routes';
 import Toastr from 'components/templates/Toastr';
 import Loading from 'components/templates/Loading';
 

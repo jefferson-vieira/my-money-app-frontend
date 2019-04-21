@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { Route } from 'react-router';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions as userActions } from 'store/ducks/user';
 
-import Sidebar from 'components/templates/Sidebar';
-import Header from 'components/templates/Header';
+import { logout } from 'utils/auth';
+
+import Sidebar from './Sidebar';
+import Header from './Header';
 import Breadcrumb from './Breadcrumb';
 
-import Dashboard from 'pages/Dashboard';
-import Bank from 'pages/Bank';
+import Lazy from 'routes/Lazy';
 
-import { logout } from 'utils/auth';
+const Dashboard = lazy(() => import('pages/Dashboard'));
+const Bank = lazy(() => import('pages/Bank'));
 
 class Main extends Component {
   state = {
     showSidebar: true
   };
+
+  componentDidMount() {
+    if (window.screen.width < 768) {
+      this.setState({ showSidebar: false });
+    }
+  }
 
   toggleSidebar = () => {
     this.setState({ showSidebar: !this.state.showSidebar });
@@ -42,10 +50,14 @@ class Main extends Component {
             user={user}
             loggout={this.handleSignout}
           />
-          <Breadcrumb />
-          <div className="container-fluid">
-            <Route exact path="/me/dashboard" component={Dashboard} />
-            <Route exact path="/me/banks" component={Bank} />
+          <div className="wrapper-content">
+            <Breadcrumb />
+            <div className="container-fluid">
+              <Lazy>
+                <Route exact path="/me/dashboard" component={Dashboard} />
+                <Route exact path="/me/banks" component={Bank} />
+              </Lazy>
+            </div>
           </div>
         </div>
       </>
