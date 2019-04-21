@@ -9,7 +9,8 @@ import {
   faCreditCard,
   faPlus,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -21,5 +22,6 @@ library.add(
   faCreditCard,
   faPlus,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faSyncAlt
 );

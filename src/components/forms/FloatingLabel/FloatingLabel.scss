@@ -59,7 +59,8 @@
     cursor: text;
   }
 
-  &--password {
+  &--password,
+  &--postal-code {
     position: relative;
 
     &__btn {

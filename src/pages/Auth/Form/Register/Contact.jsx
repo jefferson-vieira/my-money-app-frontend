@@ -2,6 +2,7 @@ import React from 'react';
 import { Field } from 'redux-form';
 
 import FloatingLabelInput from 'components/forms/FloatingLabel/GeneralInput';
+import PostalCodeInput from 'components/forms/FloatingLabel/PostalCodeInput';
 
 import {
   required,
@@ -16,7 +17,7 @@ import {
 const Contact = ({ getAddress, change, touch }) => {
   const handleAddress = async () => {
     const { logradouro, bairro, localidade, uf } = (await getAddress()) || {};
-    touch('street', 'district', 'city', 'state');
+    touch('postalCode', 'street', 'number', 'district', 'city', 'state');
     change('street', logradouro || '');
     change('district', bairro || '');
     change('city', localidade || '');
@@ -29,15 +30,15 @@ const Contact = ({ getAddress, change, touch }) => {
       <div className="row">
         <div className="col-12 col-md-4">
           <Field
-            component={FloatingLabelInput}
+            component={PostalCodeInput}
             id="inputUserPostalCode"
             name="postalCode"
             type="text"
             autoComplete="postal-code"
             label="CEP"
-            validate={[required, postalCode]}
             maxLength={9}
-            onBlur={handleAddress}
+            onClick={handleAddress}
+            validate={[required, postalCode]}
           />
         </div>
         <div className="col-12 col-md-8">
