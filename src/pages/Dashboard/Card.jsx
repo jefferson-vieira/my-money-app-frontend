@@ -20,14 +20,14 @@ const Card = ({
         <small className="text-muted">{createdAt}</small>
       </div>
       <div className="card-body">
-        <p className="card-text" title={`Crédito: ${credit}`}>
+        <p className="card-text" title={`Crédito da conta: ${credit}`}>
           <FontAwesomeIcon icon="dollar-sign" /> $ {credit}
         </p>
-        <p className="card-text" title={`Débito: ${debit}`}>
+        <p className="card-text" title={`Débito da conta: ${debit}`}>
           <FontAwesomeIcon icon="receipt" /> $ {debit}
         </p>
         <hr />
-        <p className="card-text" title={`Saldo: ${balance}`}>
+        <p className="card-text" title={`Saldo da conta: ${balance}`}>
           <FontAwesomeIcon icon="credit-card" /> $ {balance}
         </p>
       </div>

@@ -7,7 +7,7 @@ const Summary = ({ summary: { credit, debit } }) => (
   <>
     <Header
       primary="Resumo"
-      secondary="Veja o resumo das suas movimentações financeiras"
+      secondary="Veja o resumo total das suas movimentações financeiras"
     />
     <section className="dashboard__summary">
       <ValueBox

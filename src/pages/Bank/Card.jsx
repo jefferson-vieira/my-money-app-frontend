@@ -2,6 +2,7 @@ import React from 'react';
 
 const Card = ({
   account: { bankName, number, agency, digit, createdAt },
+  editAccount,
   removeAccount
 }) => (
   <div className="card">
@@ -25,6 +26,13 @@ const Card = ({
           onClick={removeAccount}
         >
           Apagar
+        </button>
+        <button
+          title="Editar conta"
+          className="btn btn-outline-warning"
+          onClick={editAccount}
+        >
+          Editar
         </button>
       </div>
       <p className="card-text">
