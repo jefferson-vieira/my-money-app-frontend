@@ -10,6 +10,10 @@ export async function addBank(bank) {
   return http.post(URL, bank);
 }
 
+export async function editBank({ id, ...bank }) {
+  return http.put(`${URL}/${id}`, bank);
+}
+
 export async function deleteBank(bankId) {
   return http.delete(`${URL}/${bankId}`);
 }

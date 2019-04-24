@@ -10,8 +10,9 @@ import Header from 'components/ContentHeader';
 import Form from './Form';
 import List from './List';
 
-import { getBanks, addBank, deleteBank } from 'services/bank';
+import { getBanks, addBank, editBank, deleteBank } from 'services/bank';
 
+import { showConfirmModal } from 'utils/confirm';
 import { showErrorModal } from 'utils/error';
 import { showSuccessModal } from 'utils/success';
 
@@ -55,19 +56,43 @@ class Bank extends Component {
     }
   };
 
-  removeBank = async bankId => {
-    const { setLoading } = this.props;
+  editBank = async bank => {
+    console.table(bank);
 
-    try {
-      setLoading(true);
-      await deleteBank(bankId);
-      showSuccessModal('Conta removida com sucesso!').then(() => {
-        this.getBanks();
-      });
-    } catch (error) {
-      showErrorModal(error);
-    } finally {
-      setLoading(false);
+    // const { setLoading } = this.props;
+
+    // try {
+    //   setLoading(true);
+    //   await editBank(bankId);
+    //   showSuccessModal('Conta removida com sucesso!').then(() => {
+    //     this.getBanks();
+    //   });
+    // } catch (error) {
+    //   showErrorModal(error);
+    // } finally {
+    //   setLoading(false);
+    // }
+  };
+
+  removeBank = async bankId => {
+    const { value: confirm } = await showConfirmModal(
+      'Tem certeza de que quer mesmo remover esta conta bancária? Os dados vinculados a ela serão perdidos...'
+    );
+
+    if (confirm) {
+      const { setLoading } = this.props;
+
+      try {
+        setLoading(true);
+        await deleteBank(bankId);
+        showSuccessModal('Conta removida com sucesso!').then(() => {
+          this.getBanks();
+        });
+      } catch (error) {
+        showErrorModal(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -87,6 +112,7 @@ class Bank extends Component {
         ) : (
           <List
             banks={banks}
+            editBank={this.editBank}
             removeBank={this.removeBank}
             handleForm={this.handleForm}
           />

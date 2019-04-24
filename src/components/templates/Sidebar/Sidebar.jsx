@@ -17,8 +17,18 @@ const Sidebar = ({ show }) => (
           </NavLink>
         </div>
         <ul className="sidebar__menu">
-          <Item to="/me/dashboard" icon="chart-line" label="Resumo" />
-          <Item to="/me/banks" icon="university" label="Contas" />
+          <Item
+            to="/me/dashboard"
+            icon="chart-line"
+            label="Resumo"
+            title="Veja o resumo da sua situação financeira"
+          />
+          <Item
+            to="/me/banks"
+            icon="university"
+            label="Contas"
+            title="Gerencie suas contas bancárias"
+          />
         </ul>
       </div>
     </nav>
