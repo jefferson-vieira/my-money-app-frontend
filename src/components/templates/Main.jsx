@@ -18,14 +18,8 @@ const Bank = lazy(() => import('pages/Bank'));
 
 class Main extends Component {
   state = {
-    showSidebar: true
+    showSidebar: !this.props.mobile
   };
-
-  componentDidMount() {
-    if (window.screen.width < 768) {
-      this.setState({ showSidebar: false });
-    }
-  }
 
   toggleSidebar = () => {
     this.setState({ showSidebar: !this.state.showSidebar });
@@ -39,18 +33,25 @@ class Main extends Component {
 
   render() {
     const { showSidebar } = this.state;
-    const { user } = this.props;
+    const { user, mobile } = this.props;
 
     return (
       <>
-        <Sidebar show={showSidebar} />
+        <Sidebar
+          mobile={mobile}
+          show={showSidebar}
+          toggleShow={this.toggleSidebar}
+        />
         <div className="content">
           <Header
             sidebar={[showSidebar, this.toggleSidebar]}
             user={user}
-            loggout={this.handleSignout}
+            logout={this.handleSignout}
           />
-          <div className="wrapper-content">
+          <div
+            className="wrapper-content"
+            onClick={() => mobile && this.setState({ showSidebar: false })}
+          >
             <Breadcrumb />
             <div className="container-fluid">
               <Lazy>
@@ -66,7 +67,8 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
+  mobile: state.status.mobile
 });
 
 const mapDispatchToProps = dispatch =>

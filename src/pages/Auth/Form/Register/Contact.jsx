@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field } from 'redux-form';
+import { Field, FormSection } from 'redux-form';
 
 import FloatingLabelInput from 'components/forms/FloatingLabel/GeneralInput';
 import PostalCodeInput from 'components/forms/FloatingLabel/PostalCodeInput';
@@ -27,78 +27,80 @@ const Contact = ({ getAddress, change, touch }) => {
   return (
     <fieldset>
       <legend>Contato</legend>
-      <div className="row">
-        <div className="col-12 col-md-4">
-          <Field
-            component={PostalCodeInput}
-            id="inputUserPostalCode"
-            name="postalCode"
-            type="text"
-            autoComplete="postal-code"
-            label="CEP"
-            maxLength={9}
-            onClick={handleAddress}
-            validate={[required, postalCode]}
-          />
+      <FormSection name="address">
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <Field
+              component={PostalCodeInput}
+              id="inputUserPostalCode"
+              name="postalCode"
+              type="text"
+              autoComplete="postal-code"
+              label="CEP"
+              maxLength={9}
+              onClick={handleAddress}
+              validate={[required, postalCode]}
+            />
+          </div>
+          <div className="col-12 col-md-8">
+            <Field
+              component={FloatingLabelInput}
+              id="inputUserStreet"
+              name="street"
+              type="text"
+              autoComplete="address-line1"
+              label="Logradouro"
+              validate={[required, name]}
+            />
+          </div>
+          <div className="col-12 col-md-2">
+            <Field
+              component={FloatingLabelInput}
+              id="inputUserNumber"
+              name="number"
+              type="text"
+              autoComplete="address-line2"
+              label="Número"
+              validate={[required, number]}
+            />
+          </div>
+          <div className="col-12 col-md-4">
+            <Field
+              component={FloatingLabelInput}
+              id="inputUserDistrict"
+              name="district"
+              type="text"
+              autoComplete="address-level3"
+              label="Bairro"
+              validate={[required, name]}
+            />
+          </div>
+          <div className="col-12 col-md-4">
+            <Field
+              component={FloatingLabelInput}
+              id="inputUserCity"
+              name="city"
+              type="text"
+              autoComplete="address-level2"
+              label="Cidade"
+              validate={[required, name]}
+            />
+          </div>
+          <div className="col-12 col-md-2">
+            <Field
+              component={FloatingLabelInput}
+              id="inputUserState"
+              name="state"
+              type="text"
+              autoComplete="address-level1"
+              label="Estado"
+              maxLength="2"
+              normalize={value => value.toUpperCase()}
+              validate={[required, state]}
+            />
+          </div>
         </div>
-        <div className="col-12 col-md-8">
-          <Field
-            component={FloatingLabelInput}
-            id="inputUserStreet"
-            name="street"
-            type="text"
-            autoComplete="address-line1"
-            label="Logradouro"
-            validate={[required, name]}
-          />
-        </div>
-        <div className="col-12 col-md-2">
-          <Field
-            component={FloatingLabelInput}
-            id="inputUserNumber"
-            name="number"
-            type="text"
-            autoComplete="address-line2"
-            label="Número"
-            validate={[required, number]}
-          />
-        </div>
-        <div className="col-12 col-md-4">
-          <Field
-            component={FloatingLabelInput}
-            id="inputUserDistrict"
-            name="district"
-            type="text"
-            autoComplete="address-level3"
-            label="Bairro"
-            validate={[required, name]}
-          />
-        </div>
-        <div className="col-12 col-md-4">
-          <Field
-            component={FloatingLabelInput}
-            id="inputUserCity"
-            name="city"
-            type="text"
-            autoComplete="address-level2"
-            label="Cidade"
-            validate={[required, name]}
-          />
-        </div>
-        <div className="col-12 col-md-2">
-          <Field
-            component={FloatingLabelInput}
-            id="inputUserState"
-            name="state"
-            type="text"
-            autoComplete="address-level1"
-            label="Estado"
-            maxLength="2"
-            normalize={value => value.toUpperCase()}
-            validate={[required, state]}
-          />
-        </div>
-      </div>
+      </FormSection>
       <div className="row">
         <div className="col-12 col-md-6">
           <Field

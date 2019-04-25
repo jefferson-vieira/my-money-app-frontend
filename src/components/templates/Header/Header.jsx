@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import Navbar from './Navbar';
 
-const Header = ({ sidebar: [showSidebar, toggleSidebar], user, loggout }) => (
+const Header = ({ sidebar: [showSidebar, toggleSidebar], user, logout }) => (
   <nav className="header">
     <button
       type="button"
@@ -21,7 +21,7 @@ const Header = ({ sidebar: [showSidebar, toggleSidebar], user, loggout }) => (
         <span />
       </div>
     </button>
-    <Navbar user={user} logout={loggout} />
+    <Navbar user={user} logout={logout} />
   </nav>
 );
 

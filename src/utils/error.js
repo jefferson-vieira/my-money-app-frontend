@@ -22,8 +22,8 @@ function handleError(error) {
   if (typeof error === 'number') return getMessageErrorByStatus(error);
 
   const { response } = error || {};
-  const { data: { message }, status } = response || {};
-  if (typeof message === 'string') return message;
+  const { data, status } = response || {};
+  if (data && typeof data.message === 'string') return data.message;
 
   return getMessageErrorByStatus(status);
 }
@@ -33,7 +33,7 @@ function getMessageErrorByStatus(status) {
     case 400:
       return 'Está preenchendo tudo certinho?';
     case 401:
-      return 'Não foi possível autenticar o seu usuário!'
+      return 'Não foi possível autenticar o seu usuário!';
     case 403:
       return 'Você não tem permissões suficientes!';
     case 404:

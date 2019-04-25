@@ -7,16 +7,16 @@ import history from 'routes/history';
 import Logo from '../Logo';
 import Item from './Item';
 
-const Sidebar = ({ show }) => (
+const Sidebar = ({ mobile, show, toggleShow, className }) => (
   <Router history={history}>
-    <nav className={classnames('sidebar', { active: show })}>
+    <nav className={classnames('sidebar', { active: show }, className)}>
       <div className="sidebar__container">
         <div className="sidebar__header">
-          <NavLink to="/me/dashboard">
+          <NavLink to="/me/dashboard" onClick={mobile && toggleShow}>
             <Logo />
           </NavLink>
         </div>
-        <ul className="sidebar__menu">
+        <ul className="sidebar__menu" onClick={mobile && toggleShow}>
           <Item
             to="/me/dashboard"
             icon="chart-line"
