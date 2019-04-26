@@ -5,9 +5,9 @@ import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
-import statusReducer from './status';
-import userReducer from './user';
-import bankReducer from './bank';
+import statusReducer from './ducks/status';
+import userReducer from './ducks/user';
+import bankReducer from './ducks/bank';
 
 const middlewares = [promise, thunk];
 
@@ -20,7 +20,7 @@ const reducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  if (action.type.includes('SIGNOUT')) {
+  if (action.type.includes('LOGOUT')) {
     state = undefined;
   }
 

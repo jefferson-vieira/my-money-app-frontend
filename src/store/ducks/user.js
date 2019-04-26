@@ -9,7 +9,7 @@ const setUser = (state = INITIAL_STATE, { user }) => ({
 
 export const { Types, Creators: Actions } = createActions({
   setUser: ['user'],
-  signout: []
+  logout: []
 });
 
 export default createReducer(INITIAL_STATE, {

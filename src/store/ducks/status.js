@@ -3,7 +3,8 @@ import { createActions, createReducer } from 'reduxsauce';
 const INITIAL_STATE = {
   loading: false,
   error: false,
-  redirect: '/me/dashboard'
+  redirect: '/me/dashboard',
+  mobile: window.screen.width < 576
 };
 
 const setError = (state = INITIAL_STATE, { status }) => ({

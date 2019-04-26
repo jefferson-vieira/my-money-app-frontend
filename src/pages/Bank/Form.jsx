@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-import LabelInput from 'components/LabelInput';
+import LabelInput from 'components/forms/Input';
 
 import { required, name, number } from 'utils/validators';
 import { showErrorToast } from 'utils/error';
@@ -18,7 +18,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             label="Nome do banco"
             placeholder="Digite o nome do banco"
             validate={[required, name]}
-            invalidFeedback="Nome inválido"
+            invalidfeedback="Nome inválido"
           />
           <Field
             component={LabelInput}
@@ -29,7 +29,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             label="Número da agência"
             placeholder="Digite o número da agência"
             validate={[required, number]}
-            invalidFeedback="Apenas números inteiros e positivos"
+            invalidfeedback="Apenas números inteiros e positivos"
           />
           <Field
             component={LabelInput}
@@ -40,7 +40,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             label="Número da conta"
             placeholder="Digite o número da conta"
             validate={[required, number]}
-            invalidFeedback="Apenas números inteiros e positivos"
+            invalidfeedback="Apenas números inteiros e positivos"
           />
           <Field
             component={LabelInput}
@@ -51,7 +51,7 @@ const BankForm = ({ handleForm, handleSubmit, valid, onSubmit }) => (
             label="Dígito da conta"
             placeholder="Digite o dígito da conta"
             validate={[required, number]}
-            invalidFeedback="Apenas números inteiros e positivos"
+            invalidfeedback="Apenas números inteiros e positivos"
           />
           <hr />
           <div className="bank__form__btn-group">

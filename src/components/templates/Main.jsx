@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component, lazy } from 'react';
 import { Route } from 'react-router';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Actions as userActions } from 'store/ducks/user';
 
-import Sidebar from 'components/Sidebar';
-import Header from 'components/Header';
+import { logout } from 'utils/auth';
 
-import Dashboard from 'pages/Dashboard';
-import Bank from 'pages/Bank';
+import Sidebar from './Sidebar';
+import Header from './Header';
+import Breadcrumb from './Breadcrumb';
 
-import { signout } from 'utils/auth';
+import Lazy from 'routes/Lazy';
+
+const Dashboard = lazy(() => import('pages/Dashboard'));
+const Bank = lazy(() => import('pages/Bank'));
 
 class Main extends Component {
   state = {
-    showSidebar: true
+    showSidebar: !this.props.mobile
   };
 
   toggleSidebar = () => {
@@ -23,27 +26,39 @@ class Main extends Component {
   };
 
   handleSignout = () => {
-    signout();
-    this.props.signout();
+    logout();
+    this.props.logout();
     this.props.history.push('/auth');
   };
 
   render() {
     const { showSidebar } = this.state;
-    const { user } = this.props;
+    const { user, mobile } = this.props;
 
     return (
       <>
-        <Sidebar show={showSidebar} />
+        <Sidebar
+          mobile={mobile}
+          show={showSidebar}
+          toggleShow={this.toggleSidebar}
+        />
         <div className="content">
           <Header
             sidebar={[showSidebar, this.toggleSidebar]}
             user={user}
-            loggout={this.handleSignout}
+            logout={this.handleSignout}
           />
-          <div className="container-fluid">
-            <Route exact path="/me/dashboard" component={Dashboard} />
-            <Route exact path="/me/banks" component={Bank} />
+          <div
+            className="wrapper-content"
+            onClick={() => mobile && this.setState({ showSidebar: false })}
+          >
+            <Breadcrumb />
+            <div className="container-fluid">
+              <Lazy>
+                <Route exact path="/me/dashboard" component={Dashboard} />
+                <Route exact path="/me/banks" component={Bank} />
+              </Lazy>
+            </div>
           </div>
         </div>
       </>
@@ -52,11 +67,12 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
+  mobile: state.status.mobile
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ signout: userActions.signout }, dispatch);
+  bindActionCreators({ logout: userActions.logout }, dispatch);
 
 Main = connect(
   mapStateToProps,

@@ -1,4 +1,4 @@
 export default {
-  SIGNIN: 'Entrar',
-  SIGNUP: 'Cadastrar'
+  LOGIN: 'Acesso',
+  REGISTER: 'Cadastro'
 };

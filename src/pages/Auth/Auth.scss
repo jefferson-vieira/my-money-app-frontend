@@ -12,12 +12,20 @@
     }
 
     @include media-breakpoint-up(sm) {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
+      margin: 3rem 0;
       border-radius: 10px;
+
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &--login {
+        width: 400px;
+      }
+
+      &--register {
+        width: 600px;
+      }
     }
 
     padding: 2rem;
@@ -28,8 +36,18 @@
     flex-direction: column;
     align-items: center;
 
+    transition: width 0.5s;
+  }
+
+  &__form {
+    width: 100%;
+
     & form {
       width: 100%;
+
+      & legend {
+        margin-bottom: 2rem;
+      }
     }
   }
 
@@ -59,8 +77,12 @@
   }
 
   &__actions {
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    flex-wrap: wrap;
   }
 }

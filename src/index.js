@@ -6,11 +6,11 @@ import ReactDOM from 'react-dom';
 import './configs';
 
 import { Provider } from 'react-redux';
-import store from 'store/ducks';
+import store from './store';
 
 import App from './App';
 
-import * as serviceWorker from 'serviceWorker';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>

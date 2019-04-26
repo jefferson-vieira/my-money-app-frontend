@@ -1,100 +1,79 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, formValueSelector } from 'redux-form';
 
-import FloatingLabelInput from 'components/FloatingLabelInput';
+import Fade from 'components/animations/Fade';
 
-import {
-  required,
-  name,
-  email,
-  password,
-  matchPassword
-} from 'utils/validators';
+import Login from './Form/Login';
+import Register from './Form/Register';
+import Actions from './Form/Actions';
 
+import { getAddress } from 'services/address';
+
+import { showInfoToast } from 'utils/info';
+import { showSuccessToast } from 'utils/success';
 import { showErrorToast } from 'utils/error';
 
-const Form = ({
-  authType,
-  changeAuthType,
-  needsAccount,
-  handleSubmit,
-  onSubmit,
-  valid
-}) => (
-  <form onSubmit={handleSubmit(onSubmit)} noValidate>
-    {needsAccount && (
-      <Field
-        component={FloatingLabelInput}
-        id="inputUserName"
-        name="name"
-        type="text"
-        autoComplete="name"
-        label="Nome"
-        validate={[required, name]}
-      />
-    )}
-    <Field
-      component={FloatingLabelInput}
-      id="inputUserEmail"
-      name="email"
-      type="email"
-      autoComplete="username email"
-      label="E-mail"
-      validate={[required, email]}
-    />
-    <Field
-      component={FloatingLabelInput}
-      id="inputUserPassword"
-      name="password"
-      type="password"
-      autoComplete={needsAccount ? 'new-password' : 'current-password'}
-      label="Senha"
-      validate={[required, password]}
-      validateMessage={
-        needsAccount &&
-        'Deve ter entre 8 e 16 caracteres e conter letras, números e símbolos'
+class Form extends Component {
+  getAddress = async () => {
+    try {
+      const { postalCode } = this.props;
+      if (postalCode) {
+        showInfoToast('Buscando endereço pelo CEP...');
+        const address = await getAddress(postalCode);
+        showSuccessToast('O endereço foi encontrado!');
+        return address;
       }
-    />
-    {needsAccount && (
-      <Field
-        component={FloatingLabelInput}
-        id="inputUserConfirmPassword"
-        name="confirmPassword"
-        type="password"
-        label="Confirme a senha"
-        validate={[required, password, matchPassword]}
-      />
-    )}
-    <div className="auth__actions">
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-        onClick={e => {
-          e.target.blur();
-          changeAuthType();
-        }}
-        title={
-          needsAccount
-            ? 'Se já tiver conta, acesse ela clicando aqui!'
-            : 'Se não tiver conta, crie uma clicando aqui!'
-        }
-      >
-        {needsAccount ? 'Entrar' : 'Criar conta'}
-      </button>
-      <button
-        type="submit"
-        onClick={() => {
-          if (!valid) showErrorToast(400);
-        }}
-        className="btn btn-primary"
-        title="Efetuar acesso"
-      >
-        {authType}
-      </button>
-    </div>
-  </form>
-);
+    } catch {
+      showErrorToast('O CEP informado não foi encontrado!');
+    }
+  };
 
-export default reduxForm({
+  render() {
+    const {
+      authType,
+      needsAccount,
+      toggleAuthType,
+      changePassword,
+      handleSubmit,
+      onSubmit,
+      change,
+      touch,
+      valid
+    } = this.props;
+
+    return (
+      <div className="auth__form">
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <h2 className="auth__title">{authType}</h2>
+          <Fade show={needsAccount}>
+            <Register
+              getAddress={this.getAddress}
+              change={change}
+              touch={touch}
+            />
+          </Fade>
+          <Fade show={!needsAccount}>
+            <Login />
+          </Fade>
+          <Actions
+            needsAccount={needsAccount}
+            toggleAuthType={toggleAuthType}
+            changePassword={changePassword}
+            valid={valid}
+          />
+        </form>
+      </div>
+    );
+  }
+}
+
+Form = reduxForm({
   form: 'authForm'
 })(Form);
+
+Form = connect(state => ({
+  postalCode: formValueSelector('authForm')(state, 'postalCode')
+}))(Form);
+
+export default Form;

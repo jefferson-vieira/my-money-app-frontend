@@ -12,6 +12,7 @@ import List from './List';
 
 import { getBanks, addBank, deleteBank } from 'services/bank';
 
+import { showConfirmModal } from 'utils/confirm';
 import { showErrorModal } from 'utils/error';
 import { showSuccessModal } from 'utils/success';
 
@@ -56,18 +57,24 @@ class Bank extends Component {
   };
 
   removeBank = async bankId => {
-    const { setLoading } = this.props;
+    const { value: confirm } = await showConfirmModal(
+      'Tem certeza de que quer mesmo remover esta conta bancária? Os dados vinculados a ela serão perdidos...'
+    );
 
-    try {
-      setLoading(true);
-      await deleteBank(bankId);
-      showSuccessModal('Conta removida com sucesso!').then(() => {
-        this.getBanks();
-      });
-    } catch (error) {
-      showErrorModal(error);
-    } finally {
-      setLoading(false);
+    if (confirm) {
+      const { setLoading } = this.props;
+
+      try {
+        setLoading(true);
+        await deleteBank(bankId);
+        showSuccessModal('Conta removida com sucesso!').then(() => {
+          this.getBanks();
+        });
+      } catch (error) {
+        showErrorModal(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

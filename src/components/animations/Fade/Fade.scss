@@ -1,23 +1,11 @@
-%delay {
-  transition: opacity 0.3s ease;
-}
-
-.fade {
-  &-enter {
-    opacity: 0;
-
-    &-active {
-      opacity: 1;
-      @extend %delay;
-    }
+.fade-transition {
+  &--entering,
+  &--entered {
+    opacity: 1 !important;
   }
 
-  &-exit {
-    opacity: 1;
-
-    &-active {
-      opacity: 0;
-      @extend %delay;
-    }
+  &--exiting,
+  &--exited {
+    opacity: 0 !important;
   }
 }

@@ -4,32 +4,17 @@
 .dashboard {
   &__summary {
     display: grid;
-    grid-template-columns: 1fr;
-
-    @include media-breakpoint-up(xl) {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
+    @include grid(xs, 1);
+    @include grid(xl, 3);
   }
 
   &__balance {
     display: grid;
-    grid-template-columns: 1fr;
-
-    @include media-breakpoint-up(sm) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @include media-breakpoint-up(md) {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    @include media-breakpoint-up(lg) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    @include media-breakpoint-up(xl) {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
+    @include grid(xs, 1);
+    @include grid(sm, 2);
+    @include grid(md, 3);
+    @include grid(lg, 4);
+    @include grid(xl, 5);
 
     & .card {
       margin: 1rem;

@@ -21,7 +21,7 @@ const Card = ({
       <div className="card-btn-group">
         <button
           title="Apagar conta"
-          className="btn btn-outline-danger"
+          className="btn btn-outline-danger float-right"
           onClick={removeAccount}
         >
           Apagar

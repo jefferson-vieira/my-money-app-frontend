@@ -17,6 +17,13 @@
       box-shadow: 0 0 0px 1rem #eee inset;
     }
 
+    &:not(:focus):not(.validate) {
+      &::-webkit-datetime-edit,
+      &::-webkit-datetime-edit-fields-wrapper {
+        color: transparent;
+      }
+    }
+
     &:focus,
     &.validate {
       & ~ label {
@@ -50,5 +57,26 @@
     transition: 0.5s;
     z-index: -1;
     cursor: text;
+  }
+
+  &--password,
+  &--postal-code {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: transparent;
+      border: none;
+      outline: none !important;
+      z-index: 1;
+
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.25);
+      }
+    }
   }
 }
