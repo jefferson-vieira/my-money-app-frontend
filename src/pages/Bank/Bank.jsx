@@ -10,7 +10,7 @@ import Header from 'components/ContentHeader';
 import Form from './Form';
 import List from './List';
 
-import { getBanks, addBank, editBank, deleteBank } from 'services/bank';
+import { getBanks, addBank, deleteBank } from 'services/bank';
 
 import { showConfirmModal } from 'utils/confirm';
 import { showErrorModal } from 'utils/error';
@@ -56,24 +56,6 @@ class Bank extends Component {
     }
   };
 
-  editBank = async bank => {
-    console.table(bank);
-
-    // const { setLoading } = this.props;
-
-    // try {
-    //   setLoading(true);
-    //   await editBank(bankId);
-    //   showSuccessModal('Conta removida com sucesso!').then(() => {
-    //     this.getBanks();
-    //   });
-    // } catch (error) {
-    //   showErrorModal(error);
-    // } finally {
-    //   setLoading(false);
-    // }
-  };
-
   removeBank = async bankId => {
     const { value: confirm } = await showConfirmModal(
       'Tem certeza de que quer mesmo remover esta conta bancária? Os dados vinculados a ela serão perdidos...'
@@ -112,7 +94,6 @@ class Bank extends Component {
         ) : (
           <List
             banks={banks}
-            editBank={this.editBank}
             removeBank={this.removeBank}
             handleForm={this.handleForm}
           />

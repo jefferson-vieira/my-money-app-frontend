@@ -16,7 +16,6 @@ import { login, register } from 'utils/auth';
 import { changePassword } from 'services/auth';
 import { showSuccessModal } from 'utils/success';
 import { showErrorModal } from 'utils/error';
-import PasswordRecovery from './Form/PasswordRecovery';
 
 class Auth extends Component {
   state = {
@@ -108,8 +107,6 @@ class Auth extends Component {
             changePassword={this.changePassword}
             onSubmit={this.onSubmit}
           />
-          <br />
-          <PasswordRecovery onSubmit={this.onSubmit} />
         </div>
       </section>
     );

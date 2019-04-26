@@ -25,5 +25,13 @@ export async function getLoggedUser() {
 }
 
 export function changePassword(email) {
-  return http.get('https://httpstat.us/200');
+  return http.get(`/forget-password/request/${email}`);
+}
+
+export function recoveryPassword(data) {
+  return http.put('/forget-password/confirm', data);
+}
+
+export function activeAccount(token) {
+  return http.get(`/registration-confirm/${token}`);
 }

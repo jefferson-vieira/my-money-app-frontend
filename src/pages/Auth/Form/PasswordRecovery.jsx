@@ -4,12 +4,13 @@ import { reduxForm, Field } from 'redux-form';
 import FloatingLabelPasswordInput from 'components/forms/FloatingLabel/PasswordInput';
 
 import { required, password, matchField } from 'utils/validators';
+import { showErrorToast } from 'utils/error';
 
 const matchPassword = matchField('password');
 
 class PasswordRecovery extends Component {
   render() {
-    const { handleSubmit, onSubmit } = this.props;
+    const { handleSubmit, onSubmit, valid } = this.props;
 
     return (
       <div className="auth__form--password-recovery">
@@ -34,6 +35,16 @@ class PasswordRecovery extends Component {
             A senha deve ter entre 8 e 16 caracteres e conter letras, números e
             símbolos
           </small>
+          <button
+            type="submit"
+            onClick={() => {
+              if (!valid) showErrorToast(400);
+            }}
+            className="btn btn-primary float-right"
+            title="Efetuar troca de senha"
+          >
+            Trocar senha
+          </button>
         </form>
       </div>
     );
