@@ -43,12 +43,8 @@ class Auth extends Component {
       input: 'email',
       inputPlaceholder: 'E-mail da conta',
       validationMessage: 'E-mail inválido!',
-      confirmButtonColor: '#00c689',
       confirmButtonText: 'Enviar',
-      showCancelButton: true,
-      reverseButtons: true,
-      cancelButtonColor: '#dc3545',
-      cancelButtonText: 'Cancelar'
+      showCancelButton: true
     });
 
     if (email) {
@@ -66,9 +62,7 @@ class Auth extends Component {
     }
   };
 
-  onSubmit = async values => {
-    console.log(values);
-
+  handleSubmit = async values => {
     const { setLoading, setUser, history, redirect } = this.props;
 
     try {
@@ -105,7 +99,7 @@ class Auth extends Component {
             needsAccount={needsAccount}
             toggleAuthType={this.toggleAuthType}
             changePassword={this.changePassword}
-            onSubmit={this.onSubmit}
+            onSubmit={this.handleSubmit}
           />
         </div>
       </section>

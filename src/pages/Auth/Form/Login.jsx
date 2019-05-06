@@ -6,7 +6,7 @@ import FloatingLabelPasswordInput from 'components/forms/FloatingLabel/PasswordI
 
 import { required, email, password } from 'utils/validators';
 
-const Login = () => (
+const Login = ({ changePassword }) => (
   <>
     <Field
       component={FloatingLabelInput}
@@ -26,6 +26,16 @@ const Login = () => (
       label="Senha"
       validate={[required, password]}
     />
+    <div className="auth__actions--login">
+      Esqueceu a senha?
+      <button
+        type="button"
+        className="btn btn-link p-0 ml-1"
+        onClick={changePassword}
+      >
+        Clique aqui!
+      </button>
+    </div>
   </>
 );
 

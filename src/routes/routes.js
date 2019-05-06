@@ -1,6 +1,7 @@
 const routes = {
   dashboard: 'Resumo',
-  banks: 'Contas'
+  banks: 'Contas',
+  'payment-cycles': 'Pagamentos'
 };
 
 export default routes;

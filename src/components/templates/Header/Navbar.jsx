@@ -1,5 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import IconButton from 'components/IconButton';
 
 const Navbar = ({ user = {}, logout }) => (
   <nav className="navbar navbar-expand-lg navbar-light w-100">
@@ -10,9 +11,13 @@ const Navbar = ({ user = {}, logout }) => (
         </p>
       </li>
       <li className="nav-item">
-        <button title="Sair" className="btn btn-link" onClick={logout}>
-          Sair <FontAwesomeIcon icon="sign-out-alt" />
-        </button>
+        <IconButton
+          title="Sair"
+          label="Sair"
+          icon="sign-out-alt"
+          className="btn btn-link"
+          onClick={logout}
+        />
       </li>
     </ul>
   </nav>

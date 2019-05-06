@@ -12,11 +12,11 @@ const Sidebar = ({ mobile, show, toggleShow, className }) => (
     <nav className={classnames('sidebar', { active: show }, className)}>
       <div className="sidebar__container">
         <div className="sidebar__header">
-          <NavLink to="/me/dashboard" onClick={mobile && toggleShow}>
+          <NavLink to="/me/dashboard" onClick={mobile ? toggleShow : undefined}>
             <Logo />
           </NavLink>
         </div>
-        <ul className="sidebar__menu" onClick={mobile && toggleShow}>
+        <ul className="sidebar__menu" onClick={mobile ? toggleShow : undefined}>
           <Item
             to="/me/dashboard"
             icon="chart-line"
@@ -28,6 +28,12 @@ const Sidebar = ({ mobile, show, toggleShow, className }) => (
             icon="university"
             label="Contas"
             title="Gerencie suas contas bancárias"
+          />
+          <Item
+            to="/me/payment-cycles"
+            icon="dollar-sign"
+            label="Pagamentos"
+            title="Gerencie seus ciclos de pagamentos"
           />
         </ul>
       </div>

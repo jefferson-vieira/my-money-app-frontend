@@ -8,6 +8,7 @@ import { reducer as toastrReducer } from 'react-redux-toastr';
 import statusReducer from './ducks/status';
 import userReducer from './ducks/user';
 import bankReducer from './ducks/bank';
+import paymentCycleReducer from './ducks/paymentCycle';
 
 const middlewares = [promise, thunk];
 
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   toastr: toastrReducer,
   status: statusReducer,
   user: userReducer,
-  bank: bankReducer
+  bank: bankReducer,
+  paymentCycle: paymentCycleReducer
 });
 
 const rootReducer = (state, action) => {

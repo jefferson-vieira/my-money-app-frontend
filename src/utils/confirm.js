@@ -5,11 +5,8 @@ export function showConfirmModal(message) {
     type: 'question',
     title: 'Mas antes...',
     text: message,
-    confirmButtonColor: '#00c689',
     confirmButtonText: 'Sim',
     showCancelButton: true,
-    reverseButtons: true,
-    cancelButtonColor: '#dc3545',
     cancelButtonText: 'Não'
   });
 }

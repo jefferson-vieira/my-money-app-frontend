@@ -5,6 +5,7 @@ import New from './New';
 
 const List = ({ banks, handleForm, removeBank }) => (
   <div className="bank__card-group container">
+    <New addAccount={handleForm} />
     {banks.map(bank => (
       <Card
         key={bank.id}
@@ -12,7 +13,6 @@ const List = ({ banks, handleForm, removeBank }) => (
         removeAccount={() => removeBank(bank.id)}
       />
     ))}
-    <New addAccount={handleForm} />
   </div>
 );
 

@@ -1,0 +1,23 @@
+.payment-cycle {
+  th {
+    min-width: 120px;
+  }
+
+  td {
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.payment-cycle__actions {
+      display: grid;
+      grid-template-columns: 40px 40px;
+      grid-template-rows: 35px;
+      justify-content: space-between;
+    }
+  }
+
+  &__actions {
+    width: 120px;
+  }
+}

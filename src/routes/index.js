@@ -7,8 +7,8 @@ import Lazy from './Lazy';
 import PrivateRoute from './PrivateRoute';
 
 const Auth = lazy(() => import('pages/Auth'));
-const Active = lazy(() => import('pages/Auth/ActiveAccount'));
-const ChangePassword = lazy(() => import('pages/Auth/ChangePassword'));
+const Active = lazy(() => import('pages/Auth/Form/ActiveAccount'));
+const ChangePassword = lazy(() => import('pages/Auth/Form/ChangePassword'));
 const Main = lazy(() => import('components/templates/Main'));
 const NotFound = lazy(() => import('pages/NotFound'));
 
@@ -28,7 +28,7 @@ const Router = () => (
           path="/auth/change-password/:token"
           component={ChangePassword}
         />
-        <PrivateRoute path="/me" component={Main} />
+        <Route path="/me" component={Main} />
         <Route component={NotFound} />
       </Switch>
     </Lazy>
