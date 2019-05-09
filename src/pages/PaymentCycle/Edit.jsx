@@ -5,15 +5,23 @@ class PaymentCycleEdit extends Component {
     paymentCycle: {}
   };
 
-  componentDidMount() {
-    const { getPaymentCycle, match } = this.props;
+  async componentDidMount() {
+    console.log('oi')
 
-    const paymentCycle = getPaymentCycle(match.params.id);
+    // const { getPaymentCycle, match } = this.props;
+
+    // const paymentCycle = await getPaymentCycle(match.params.id);
+    // this.setState({ paymentCycle });
+
+    const paymentCycle = (() => {
+      return {id: 2}
+    })()
     this.setState({ paymentCycle });
+
   }
 
   render() {
-    const { paymentCycle = {} } = this.state;
+    const { paymentCycle } = this.state;
 
     return <span>{paymentCycle.id}</span>;
   }

@@ -12,7 +12,11 @@ import {
   faEyeSlash,
   faSyncAlt,
   faEdit,
-  faTrash
+  faTrash,
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -27,5 +31,9 @@ library.add(
   faEyeSlash,
   faSyncAlt,
   faEdit,
-  faTrash
+  faTrash,
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight
 );

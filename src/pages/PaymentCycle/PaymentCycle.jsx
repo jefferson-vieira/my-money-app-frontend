@@ -11,48 +11,42 @@ import { Actions as paymentCycleActions } from 'store/ducks/paymentCycle';
 import Header from 'components/ContentHeader';
 
 import { getPaymentCycles, getPaymentCycleById } from 'services/paymentCycle';
-
 import { showErrorModal } from 'utils/error';
 
 const PaymentCycleList = lazy(() => import('./List'));
 const PaymentCycleEdit = lazy(() => import('./Edit'));
 
 class PaymentCycle extends Component {
-  // componentWillMount() {
-  //   this.getPaymentCycles();
-  // }
+  componentWillMount() {
+    this.getPaymentCycles(1);
+  }
 
-  // getPaymentCycles = async () => {
-  //   const { setLoading, setPaymentCycles } = this.props;
+  getPaymentCycles = async page => {
+    const { setLoading, setPaymentCycles } = this.props;
 
-  //   try {
-  //     setLoading(true);
-  //     const { data: paymentCycles } = await getPaymentCycles();
-  //     setPaymentCycles(paymentCycles);
-  //   } catch (error) {
-  //     showErrorModal(error, true).then(() => this.getPaymentCycles());
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+    try {
+      setLoading(true);
+      const { data: paymentCycles } = await getPaymentCycles(page - 1);
+      setPaymentCycles(paymentCycles);
+    } catch (error) {
+      showErrorModal(error, true).then(() => this.getPaymentCycles(page));
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  getPaymentCycleById = id => {
-    console.log('id', id);
-    return id == 1
-      ? {
-          id: 1,
-          bankingAccount: { bankName: 'Oi' },
-          description: 'asnduasnusfafnsua',
-          date: '25/02/1998'
-        }
-      : id == 2
-      ? {
-          id: 2,
-          bankingAccount: { bankName: 'Oi 2' },
-          description: 'asnduasnusfafnsua 2',
-          date: '25/02/1998 2'
-        }
-      : {};
+  getPaymentCycleById = async id => {
+    const { setLoading } = this.props;
+
+    try {
+      setLoading(true);
+      const { data: paymentCycle } = await getPaymentCycleById(id);
+      return paymentCycle;
+    } catch (error) {
+      showErrorModal(error, true).then(() => this.getPaymentCycleById(id));
+    } finally {
+      setLoading(false);
+    }
   };
 
   editPaymentCycle = paymentCycle => {
@@ -65,17 +59,7 @@ class PaymentCycle extends Component {
   };
 
   render() {
-    const {
-      paymentCycles = [
-        {
-          id: 1,
-          bankingAccount: { bankName: 'Oi' },
-          description: 'asnduasnusfafnsua',
-          date: '25/02/1998'
-        }
-      ],
-      match
-    } = this.props;
+    const { paymentCycles, match } = this.props;
 
     return (
       <section id="payment-cycle" className="payment-cycle">
@@ -91,8 +75,9 @@ class PaymentCycle extends Component {
               <PaymentCycleList
                 {...props}
                 paymentCycles={paymentCycles}
-                edit={this.editPaymentCycle}
-                remove={this.removePaymentCycle}
+                getPaymentCycles={this.getPaymentCycles}
+                editPaymentCycle={this.editPaymentCycle}
+                removePaymentCycle={this.removePaymentCycle}
               />
             )}
           />
@@ -102,7 +87,7 @@ class PaymentCycle extends Component {
             component={props => (
               <PaymentCycleEdit
                 {...props}
-                getPaymentCycle={id => this.getPaymentCycleById(id)}
+                getPaymentCycle={this.getPaymentCycleById}
               />
             )}
           />
