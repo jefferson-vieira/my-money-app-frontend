@@ -14,6 +14,7 @@ import { getPaymentCycles, getPaymentCycleById } from 'services/paymentCycle';
 import { showErrorModal } from 'utils/error';
 
 const PaymentCycleList = lazy(() => import('./List'));
+const PaymentCycleForm = lazy(() => import('./Form'));
 const PaymentCycleEdit = lazy(() => import('./Edit'));
 
 class PaymentCycle extends Component {
@@ -36,17 +37,20 @@ class PaymentCycle extends Component {
   };
 
   getPaymentCycleById = async id => {
-    const { setLoading } = this.props;
+    // const { setLoading } = this.props;
+    // try {
+    //   setLoading(true);
+    //   const { data: paymentCycle } = await getPaymentCycleById(id);
+    //   return paymentCycle;
+    // } catch (error) {
+    //   showErrorModal(error, true).then(() => this.getPaymentCycleById(id));
+    // } finally {
+    //   setLoading(false);
+    // }
+  };
 
-    try {
-      setLoading(true);
-      const { data: paymentCycle } = await getPaymentCycleById(id);
-      return paymentCycle;
-    } catch (error) {
-      showErrorModal(error, true).then(() => this.getPaymentCycleById(id));
-    } finally {
-      setLoading(false);
-    }
+  createPaymentCycle = values => {
+    console.log('v', values);
   };
 
   editPaymentCycle = paymentCycle => {
@@ -59,7 +63,7 @@ class PaymentCycle extends Component {
   };
 
   render() {
-    const { paymentCycles, match } = this.props;
+    const { paymentCycles = {}, match } = this.props;
 
     return (
       <section id="payment-cycle" className="payment-cycle">
@@ -83,7 +87,14 @@ class PaymentCycle extends Component {
           />
           <Route
             exact
-            path={`${match.url}/:id`}
+            path={`${match.url}/create`}
+            component={props => (
+              <PaymentCycleForm {...props} onSubmit={this.createPaymentCycle} />
+            )}
+          />
+          <Route
+            exact
+            path={`${match.url}/details/:id`}
             component={props => (
               <PaymentCycleEdit
                 {...props}

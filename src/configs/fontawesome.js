@@ -16,7 +16,8 @@ import {
   faAngleLeft,
   faAngleRight,
   faAngleDoubleLeft,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faClone
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -35,5 +36,6 @@ library.add(
   faAngleLeft,
   faAngleRight,
   faAngleDoubleLeft,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faClone
 );

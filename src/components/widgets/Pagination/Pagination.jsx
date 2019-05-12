@@ -19,6 +19,7 @@ function* renderPages(pathname, pages, active, onPageChange) {
 
 const Pagination = ({
   location: { pathname },
+  show,
   label,
   pages,
   active,
@@ -30,43 +31,45 @@ const Pagination = ({
   const next = active + 1;
 
   return (
-    <nav aria-label={label}>
-      <ul className="pagination justify-content-end">
-        <PaginationItemIcon
-          pathname={pathname}
-          page={1}
-          label="Primeiro"
-          icon="angle-double-left"
-          disabled={first}
-          onClick={() => onPageChange(1)}
-        />
-        <PaginationItemIcon
-          pathname={pathname}
-          page={prev}
-          label="Anterior"
-          icon="angle-left"
-          disabled={first}
-          onClick={() => onPageChange(prev)}
-        />
-        {[...renderPages(pathname, pages, active, onPageChange)]}
-        <PaginationItemIcon
-          pathname={pathname}
-          page={next}
-          label="Próximo"
-          icon="angle-right"
-          disabled={last}
-          onClick={() => onPageChange(next)}
-        />
-        <PaginationItemIcon
-          pathname={pathname}
-          page={pages - 1}
-          label="Último"
-          icon="angle-double-right"
-          disabled={last}
-          onClick={() => onPageChange(pages)}
-        />
-      </ul>
-    </nav>
+    !!show && (
+      <nav aria-label={label}>
+        <ul className="pagination justify-content-end">
+          <PaginationItemIcon
+            pathname={pathname}
+            page={1}
+            label="Primeiro"
+            icon="angle-double-left"
+            disabled={first}
+            onClick={() => onPageChange(1)}
+          />
+          <PaginationItemIcon
+            pathname={pathname}
+            page={prev}
+            label="Anterior"
+            icon="angle-left"
+            disabled={first}
+            onClick={() => onPageChange(prev)}
+          />
+          {[...renderPages(pathname, pages, active, onPageChange)]}
+          <PaginationItemIcon
+            pathname={pathname}
+            page={next}
+            label="Próximo"
+            icon="angle-right"
+            disabled={last}
+            onClick={() => onPageChange(next)}
+          />
+          <PaginationItemIcon
+            pathname={pathname}
+            page={pages - 1}
+            label="Último"
+            icon="angle-double-right"
+            disabled={last}
+            onClick={() => onPageChange(pages)}
+          />
+        </ul>
+      </nav>
+    )
   );
 };
 

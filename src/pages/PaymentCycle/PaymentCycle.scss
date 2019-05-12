@@ -1,23 +1,112 @@
+@import 'assets/scss/media';
+
 .payment-cycle {
-  th {
-    min-width: 120px;
-  }
+  &__list {
+    // & table {
+    //   table-layout: fixed;
 
-  td {
-    vertical-align: middle;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    //   th {
+    //     min-width: 120px;
+    //   }
 
-    &.payment-cycle__actions {
-      display: grid;
-      grid-template-columns: 40px 40px;
-      grid-template-rows: 35px;
-      justify-content: space-between;
+    //   td {
+    //     vertical-align: middle;
+    //     white-space: nowrap;
+    //     overflow: hidden;
+    //     text-overflow: ellipsis;
+
+    //     &.payment-cycle__list__actions {
+    //       display: grid;
+    //       grid-template-columns: 40px 40px;
+    //       grid-template-rows: 35px;
+    //       justify-content: space-between;
+    //     }
+    //   }
+
+    //   &__actions {
+    //     width: 120px;
+    //   }
+    // }
+
+    & table {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+    }
+
+    & thead {
+      flex: 0 0 auto;
+    }
+
+    & tbody {
+      flex: 1 1 auto;
+      display: block;
+      overflow-y: auto;
+      min-height: 40vh;
+    }
+
+    & tr {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
     }
   }
 
-  &__actions {
-    width: 120px;
+  &__form {
+    background-color: #fff;
+    padding: 2rem;
+    margin-bottom: 1rem;
+
+    // & fieldset {
+    //   border-top: 1px solid #000;
+    // }
+
+    & legend {
+      margin-bottom: 2rem;
+      width: auto;
+      padding-right: 1rem;
+    }
+
+    &__summary > div {
+      display: grid;
+      gap: 1rem;
+      @include grid(xs, 1);
+      @include grid(xl, 3);
+    }
+
+    &__transactions {
+      input,
+      button {
+        height: 38px;
+      }
+
+      & th {
+        min-width: 200px;
+      }
+
+      & td {
+        vertical-align: middle;
+      }
+
+      &__actions > div {
+        display: grid;
+        column-gap: 1rem;
+        @include grid(xs, 2);
+      }
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: row-reverse;
+
+      & button,
+      a {
+        width: 100px;
+      }
+
+      & button {
+        margin-left: 1rem;
+      }
+    }
   }
 }

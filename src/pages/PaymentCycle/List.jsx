@@ -1,23 +1,40 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import IconButton from 'components/IconButton';
 import Pagination from 'components/widgets/Pagination';
 
 const PaymentCycleList = ({
-  paymentCycles: { content: paymentCycles, totalPages, number, first, last },
+  match,
+  paymentCycles: {
+    content: paymentCycles = [],
+    totalPages,
+    number,
+    first,
+    last
+  },
   getPaymentCycles,
   editPaymentCycle,
   removePaymentCycle
 }) => (
   <>
-    <div className="table-responsive">
+    <div className="my-3">
+      <Link
+        to={match.url + '/create'}
+        className="btn btn-primary float-right"
+        title="Adicionar novo ciclo de pagamento"
+      >
+        Adicionar
+      </Link>
+    </div>
+    <div className="payment-cycle__list table-responsive">
       <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Conta</th>
             <th scope="col">Descrição</th>
             <th scope="col">Data</th>
-            <th scope="col" className="payment-cycle__actions">
+            <th scope="col" className="payment-cycle__list__actions">
               Ações
             </th>
           </tr>
@@ -29,7 +46,7 @@ const PaymentCycleList = ({
                 <td>{paymentCycle.bankingAccount.bankName}</td>
                 <td>{paymentCycle.description}</td>
                 <td>{paymentCycle.date}</td>
-                {false && <td className="payment-cycle__actions">
+                <td className="payment-cycle__list__actions">
                   <IconButton
                     title="Editar"
                     className="btn btn-warning"
@@ -43,7 +60,7 @@ const PaymentCycleList = ({
                     icon="trash"
                     onClick={() => removePaymentCycle(paymentCycle)}
                   />
-                </td>}
+                </td>
               </tr>
             ))
           ) : (
@@ -57,6 +74,7 @@ const PaymentCycleList = ({
       </table>
     </div>
     <Pagination
+      show={paymentCycles.length}
       label="Ciclos de pagamentos cadastrados"
       pages={totalPages}
       active={number + 1}
