@@ -11,6 +11,8 @@ import { Actions as paymentCycleActions } from 'store/ducks/paymentCycle';
 import Header from 'components/ContentHeader';
 
 import { getPaymentCycles, getPaymentCycleById } from 'services/paymentCycle';
+import { getBanks } from 'services/bank';
+
 import { showErrorModal } from 'utils/error';
 
 const PaymentCycleList = lazy(() => import('./List'));
@@ -18,22 +20,21 @@ const PaymentCycleForm = lazy(() => import('./Form'));
 const PaymentCycleEdit = lazy(() => import('./Edit'));
 
 class PaymentCycle extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.getPaymentCycles(1);
   }
 
   getPaymentCycles = async page => {
-    const { setLoading, setPaymentCycles } = this.props;
-
-    try {
-      setLoading(true);
-      const { data: paymentCycles } = await getPaymentCycles(page - 1);
-      setPaymentCycles(paymentCycles);
-    } catch (error) {
-      showErrorModal(error, true).then(() => this.getPaymentCycles(page));
-    } finally {
-      setLoading(false);
-    }
+    // const { setLoading, setPaymentCycles } = this.props;
+    // try {
+    //   setLoading(true);
+    //   const { data: paymentCycles } = await getPaymentCycles(page - 1);
+    //   setPaymentCycles(paymentCycles);
+    // } catch (error) {
+    //   showErrorModal(error, true).then(() => this.getPaymentCycles(page));
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   getPaymentCycleById = async id => {
@@ -63,10 +64,11 @@ class PaymentCycle extends Component {
   };
 
   render() {
-    const { paymentCycles = {}, match } = this.props;
+    const { paymentCycles = {}, banks = [], match } = this.props;
 
     return (
       <section id="payment-cycle" className="payment-cycle">
+        {this.props.children}
         <Header
           primary="Pagamentos"
           secondary="Gerencie seus ciclos de pagamentos"
@@ -75,7 +77,7 @@ class PaymentCycle extends Component {
           <Route
             exact
             path={match.url}
-            component={props => (
+            render={props => (
               <PaymentCycleList
                 {...props}
                 paymentCycles={paymentCycles}
@@ -88,14 +90,19 @@ class PaymentCycle extends Component {
           <Route
             exact
             path={`${match.url}/create`}
-            component={props => (
-              <PaymentCycleForm {...props} onSubmit={this.createPaymentCycle} />
+            render={props => (
+              <PaymentCycleForm
+                {...props}
+                banks={banks}
+                getBanks={this.getBanks}
+                onSubmit={this.createPaymentCycle}
+              />
             )}
           />
           <Route
             exact
             path={`${match.url}/details/:id`}
-            component={props => (
+            render={props => (
               <PaymentCycleEdit
                 {...props}
                 getPaymentCycle={this.getPaymentCycleById}
@@ -109,7 +116,8 @@ class PaymentCycle extends Component {
 }
 
 const mapStateToProps = state => ({
-  paymentCycles: state.paymentCycle.paymentCycles
+  paymentCycles: state.paymentCycle.paymentCycles,
+  banks: state.bank.banks
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,0 +1,8 @@
+@import 'assets/scss/media';
+
+.summary {
+  display: grid;
+  gap: 1rem;
+  @include grid(xs, 1);
+  @include grid(xl, 3);
+}

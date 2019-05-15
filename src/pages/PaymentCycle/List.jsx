@@ -18,10 +18,10 @@ const PaymentCycleList = ({
   removePaymentCycle
 }) => (
   <>
-    <div className="my-3">
+    <div className="payment-cycle__list__create">
       <Link
         to={match.url + '/create'}
-        className="btn btn-primary float-right"
+        className="btn btn-primary"
         title="Adicionar novo ciclo de pagamento"
       >
         Adicionar

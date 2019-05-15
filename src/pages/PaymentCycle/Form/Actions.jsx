@@ -1,15 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
+import BackButton from 'components/BackButton';
 
 import { showErrorToast } from 'utils/error';
 
 const PaymentCycleActions = ({ match, valid }) => {
-  const pathname = match.url
-    .split('/')
-    .slice(0, -1)
-    .join('/');
-
   return (
     <div className="payment-cycle__form__actions">
       <button
@@ -22,11 +17,13 @@ const PaymentCycleActions = ({ match, valid }) => {
       >
         Salvar
       </button>
-      <Link to={pathname} className="btn btn-danger" title="Cancelar">
-        Cancelar
-      </Link>
+      <BackButton
+        className="btn-danger"
+        label="Cancelar"
+        title="Descartar alterações e voltar"
+      />
     </div>
   );
 };
 
-export default withRouter(PaymentCycleActions);
+export default PaymentCycleActions;

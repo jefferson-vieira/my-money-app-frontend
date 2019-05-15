@@ -50,6 +50,13 @@
       display: table;
       table-layout: fixed;
     }
+
+    &__create {
+      margin: 1rem 0;
+
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 
   &__form {
@@ -65,13 +72,6 @@
       margin-bottom: 2rem;
       width: auto;
       padding-right: 1rem;
-    }
-
-    &__summary > div {
-      display: grid;
-      gap: 1rem;
-      @include grid(xs, 1);
-      @include grid(xl, 3);
     }
 
     &__transactions {

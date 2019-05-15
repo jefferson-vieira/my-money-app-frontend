@@ -7,35 +7,34 @@ import SimpleInput from 'components/forms/SimpleInput';
 import PaymentCycleTransactionsActions from './Actions';
 
 function renderCreditRows(fields) {
-
   // fields.length ?
   return fields.map((field, index) => (
-      <tr key={index}>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.description`}
-            placeholder="Descrição"
-          />
-        </td>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.value`}
-            placeholder="Valor"
-          />
-        </td>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.date`}
-            type="date"
-            placeholder="Data"
-          />
-        </td>
-        <PaymentCycleTransactionsActions fields={fields} index={index} />
-      </tr>
-    ))
+    <tr key={index}>
+      <td>
+        <Field
+          component={SimpleInput}
+          name={`${field}.description`}
+          placeholder="Descrição"
+        />
+      </td>
+      <td>
+        <Field
+          component={SimpleInput}
+          name={`${field}.value`}
+          placeholder="Valor"
+        />
+      </td>
+      <td>
+        <Field
+          component={SimpleInput}
+          name={`${field}.date`}
+          type="date"
+          placeholder="Data"
+        />
+      </td>
+      <PaymentCycleTransactionsActions fields={fields} index={index} />
+    </tr>
+  ));
   // )
   //  : (
   //   <tr>
@@ -46,73 +45,100 @@ function renderCreditRows(fields) {
   // );
 }
 
-function renderBody({fields}) {
-  return (
-<>
-    <button type="button" onClick={() => fields.push({})}>
-    Add Member
-  </button>
+const renderBody = ({ fields, meta: { touched, error, submitFailed } }) => (
   <tbody>
-    {renderCreditRows(fields)}
-  </tbody>
-  </>
-  )
-}
-
-function renderDebitRows({ fields }) {
-  const statusOpts = ['PAGO', 'PENDENTE', 'AGENDADO'];
-
-  return fields.length ? (
-    fields.map((field, index) => (
+    <tr>
+      <td>
+        <button type="button" onClick={() => fields.push({})}>
+          Add Member
+        </button>
+      </td>
+    </tr>
+    {fields.map((f, index) => (
       <tr key={index}>
         <td>
           <Field
             component={SimpleInput}
-            name={`${field}.description`}
+            name={`${f}.description`}
             placeholder="Descrição"
           />
+          1 - {index} - {fields.get(index).description}
+          {console.log(fields.get(index), fields.getAll())}
         </td>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.value`}
-            placeholder="Valor"
-          />
-        </td>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.date`}
-            type="date"
-            placeholder="Data"
-          />
-        </td>
-        <td>
-          <Field
-            component={SimpleInput}
-            name={`${field}.status`}
-            placeholder="Situação"
-          />
-        </td>
-        <PaymentCycleTransactionsActions fields={fields} index={index} />
       </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="5" className="text-center">
-        Nenhum débito foi cadastrado ainda!
-      </td>
-    </tr>
-  );
-}
+    ))}
+  </tbody>
+);
+// return (
+//   <>
+//     <button type="button" onClick={() => fields.push({})}>
+//       Add Member
+//     </button>
+//     <tbody>{renderCreditRows(fields)}</tbody>
+//   </>
+// );
+
+// function renderDebitRows({ fields }) {
+//   const statusOpts = ['PAGO', 'PENDENTE', 'AGENDADO'];
+
+//   return fields.length ? (
+//     fields.map((field, index) => (
+//       <tr key={index}>
+//         <td>
+//           <Field
+//             component={SimpleInput}
+//             name={`${field}.description`}
+//             placeholder="Descrição"
+//           />
+//         </td>
+//         <td>
+//           <Field
+//             component={SimpleInput}
+//             name={`${field}.value`}
+//             placeholder="Valor"
+//           />
+//         </td>
+//         <td>
+//           <Field
+//             component={SimpleInput}
+//             name={`${field}.date`}
+//             type="date"
+//             placeholder="Data"
+//           />
+//         </td>
+//         <td>
+//           <Field
+//             component={SimpleInput}
+//             name={`${field}.status`}
+//             placeholder="Situação"
+//           />
+//         </td>
+//         <PaymentCycleTransactionsActions fields={fields} index={index} />
+//       </tr>
+//     ))
+//   ) : (
+//     <tr>
+//       <td colSpan="5" className="text-center">
+//         Nenhum débito foi cadastrado ainda!
+//       </td>
+//     </tr>
+//   );
+// }
 
 const PaymentCycleTransactions = () => (
   <div className="row">
     <div className="col-12">
       <fieldset className="payment-cycle__form__transactions">
         <legend>Créditos</legend>
+
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>{}</thead>
+          </table>
+        </div>
+
         <Table
-          thead={
+          thead={() =>
             <tr>
               <th>Descrição</th>
               <th>Valor</th>
@@ -120,11 +146,12 @@ const PaymentCycleTransactions = () => (
               <th>Ações</th>
             </tr>
           }
-          tbody={<FieldArray name="credits" component={renderBody} />}
+          tbody={() => <FieldArray name="credits" component={renderBody} />}
         />
       </fieldset>
     </div>
-    <div className="col-12">
+
+    {/* <div className="col-12">
       <fieldset className="payment-cycle__form__transactions">
         <legend>Débitos</legend>
         <Table
@@ -140,7 +167,7 @@ const PaymentCycleTransactions = () => (
           tbody={<FieldArray name="debits" component={renderDebitRows} />}
         />
       </fieldset>
-    </div>
+    </div> */}
   </div>
 );
 

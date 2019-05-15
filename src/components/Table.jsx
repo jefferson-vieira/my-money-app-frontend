@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Table = ({ thead, tbody }) => (
+const Table = ({ thead: THeadComponent, tbody: TBodyComponent }) => (
   <div className="table-responsive">
     <table className="table table-hover">
-      <thead>{thead}</thead>
-      {tbody}
+      <thead>
+        <THeadComponent />
+      </thead>
+      <tbody>
+        <TBodyComponent />
+      </tbody>
     </table>
   </div>
 );
