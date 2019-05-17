@@ -2,32 +2,6 @@
 
 .payment-cycle {
   &__list {
-    // & table {
-    //   table-layout: fixed;
-
-    //   th {
-    //     min-width: 120px;
-    //   }
-
-    //   td {
-    //     vertical-align: middle;
-    //     white-space: nowrap;
-    //     overflow: hidden;
-    //     text-overflow: ellipsis;
-
-    //     &.payment-cycle__list__actions {
-    //       display: grid;
-    //       grid-template-columns: 40px 40px;
-    //       grid-template-rows: 35px;
-    //       justify-content: space-between;
-    //     }
-    //   }
-
-    //   &__actions {
-    //     width: 120px;
-    //   }
-    // }
-
     & table {
       display: flex;
       flex-flow: column;
@@ -64,20 +38,23 @@
     padding: 2rem;
     margin-bottom: 1rem;
 
-    // & fieldset {
-    //   border-top: 1px solid #000;
-    // }
-
     & legend {
-      margin-bottom: 2rem;
       width: auto;
+      margin-bottom: 2rem;
       padding-right: 1rem;
     }
 
+    &__summary {
+      margin-bottom: 2rem;
+    }
+
     &__transactions {
-      input,
-      button {
-        height: 38px;
+      position: relative;
+
+      & > button {
+        position: absolute;
+        top: 0;
+        right: 0;
       }
 
       & th {
@@ -86,6 +63,15 @@
 
       & td {
         vertical-align: middle;
+
+        & > div {
+          margin-bottom: 0;
+
+          & input,
+          select {
+            color: inherit !important;
+          }
+        }
       }
 
       &__actions > div {

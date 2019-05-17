@@ -26,21 +26,11 @@ const Select = ({
       <option value="" disabled>
         Selecione
       </option>
-      {options.map((opt, index) => {
-        const optValue = valueSelector ? opt[valueSelector] : opt;
-        const optLabel = labelSelector ? opt[labelSelector] : opt;
-
-        return (
-          <option
-            key={index}
-            value={optValue}
-            selected={value === optValue}
-            defaultValue={defaultValue === optValue}
-          >
-            {optLabel}
-          </option>
-        );
-      })}
+      {options.map((opt, index) => (
+        <option key={index} value={valueSelector ? opt[valueSelector] : opt}>
+          {labelSelector ? opt[labelSelector] : opt}
+        </option>
+      ))}
     </select>
     <label htmlFor={props.id}>{props.label}</label>
   </div>

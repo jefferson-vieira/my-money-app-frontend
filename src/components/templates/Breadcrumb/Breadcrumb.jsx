@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import routes from 'routes/routes';
 
-const Breadcrumb = ({ location }) => {
+import BackButton from 'components/BackButton';
+
+const Breadcrumb = ({ location, match }) => {
   const paths = location.pathname.split('/').slice(2);
   const active = paths.pop();
 
@@ -12,12 +13,13 @@ const Breadcrumb = ({ location }) => {
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
         {paths.map((path, index) => (
-          <li
-            key={index}
-            className="breadcrumb-item"
-            title={`Ir para: ${routes[path]}`}
-          >
-            <Link to={path}>{routes[path]}</Link>
+          <li key={index} className="breadcrumb-item">
+            <BackButton
+              className="btn-link"
+              label={routes[path]}
+              title={`Ir para: ${routes[path]}`}
+              back={index + 1}
+            />
           </li>
         ))}
         <li

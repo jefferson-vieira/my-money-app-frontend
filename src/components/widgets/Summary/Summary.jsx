@@ -1,9 +1,10 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import ValueBox from 'components/widgets/ValueBox';
 
-const Summary = ({ credit, debit }) => (
-  <section className="summary">
+const Summary = ({ credit, debit, className }) => (
+  <section className={classnames('summary', className)}>
     <ValueBox
       text="Crédito"
       value={credit}

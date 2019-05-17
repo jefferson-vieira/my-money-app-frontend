@@ -2,7 +2,7 @@ import React from 'react';
 
 import IconButton from 'components/IconButton';
 
-const PaymentCycleTransactionsActions = ({ fields, index }) => (
+const TransactionsActions = ({ fields, index }) => (
   <td className="payment-cycle__form__transactions__actions">
     <div>
       <IconButton
@@ -22,4 +22,4 @@ const PaymentCycleTransactionsActions = ({ fields, index }) => (
   </td>
 );
 
-export default PaymentCycleTransactionsActions;
+export default TransactionsActions;

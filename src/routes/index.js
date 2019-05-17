@@ -28,7 +28,7 @@ const Router = () => (
           path="/auth/change-password/:token"
           component={ChangePassword}
         />
-        <Route path="/me" component={Main} />
+        <PrivateRoute path="/me" component={Main} />
         <Route component={NotFound} />
       </Switch>
     </Lazy>

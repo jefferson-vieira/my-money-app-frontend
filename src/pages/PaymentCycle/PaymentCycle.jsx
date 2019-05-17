@@ -68,7 +68,6 @@ class PaymentCycle extends Component {
 
     return (
       <section id="payment-cycle" className="payment-cycle">
-        {this.props.children}
         <Header
           primary="Pagamentos"
           secondary="Gerencie seus ciclos de pagamentos"

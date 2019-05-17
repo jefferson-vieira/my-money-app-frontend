@@ -48,3 +48,14 @@ code {
 .center-content {
   @include center-content();
 }
+
+input,
+select,
+legend {
+  height: 38px;
+}
+
+legend {
+  display: flex;
+  align-items: center;
+}

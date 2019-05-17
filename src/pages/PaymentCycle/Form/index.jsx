@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -36,14 +36,14 @@ class PaymentCycleForm extends Component {
   render() {
     console.log('render');
 
-    const { handleSubmit, onSubmit, valid } = this.props;
+    const { summary, handleSubmit, onSubmit, valid } = this.props;
 
     return (
       <section className="payment-cycle__form">
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <PaymentCycleInformations />
           <hr />
-          <PaymentCycleSummary />
+          <PaymentCycleSummary summary={summary} />
           <hr />
           <PaymentCycleTransactions />
           <hr />
@@ -59,7 +59,8 @@ PaymentCycleForm = reduxForm({
 })(PaymentCycleForm);
 
 const mapStateToProps = state => ({
-  banks: state.bank.banks
+  banks: state.bank.banks,
+  summary: formValueSelector('paymentCycleForm')(state, 'credits', 'debits')
 });
 
 const mapDispatchToProps = dispatch =>
