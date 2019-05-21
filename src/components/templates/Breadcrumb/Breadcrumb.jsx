@@ -5,7 +5,7 @@ import routes from 'routes/routes';
 
 import BackButton from 'components/BackButton';
 
-const Breadcrumb = ({ location, match }) => {
+const Breadcrumb = ({ location }) => {
   const paths = location.pathname.split('/').slice(2);
   const active = paths.pop();
 
@@ -27,7 +27,7 @@ const Breadcrumb = ({ location, match }) => {
           title="Você está aqui"
           aria-current="page"
         >
-          {routes[active]}
+          {isNaN(active) ? routes[active] : active}
         </li>
       </ol>
     </nav>

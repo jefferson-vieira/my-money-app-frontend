@@ -3,3 +3,5 @@ export const money = value =>
     maximumFractionDigits: 2,
     minimumFractionDigits: 2
   });
+
+export const localDate = date => new Date(date).toLocaleDateString();

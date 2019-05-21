@@ -2,7 +2,7 @@ import React from 'react';
 
 import Summary from 'components/widgets/Summary';
 
-const sum = (a, b) => a + b.value || 0;
+const sum = (a, b) => a + +b.value || 0;
 
 const PaymentCycleSummary = ({ summary: { credits = [], debits = [] } }) => {
   const credit = credits.reduce(sum, 0);

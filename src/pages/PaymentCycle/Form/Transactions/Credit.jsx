@@ -5,6 +5,8 @@ import FloatingLabelInput from 'components/forms/FloatingLabel/GeneralInput';
 
 import TransactionsActions from './Actions';
 
+import { required, money } from 'utils/validators';
+
 const renderRows = ({ fields }) =>
   fields.length ? (
     fields.map((field, index) => (
@@ -14,13 +16,16 @@ const renderRows = ({ fields }) =>
             component={FloatingLabelInput}
             name={`${field}.description`}
             placeholder="Descrição"
+            validate={[required]}
           />
         </td>
         <td>
           <Field
             component={FloatingLabelInput}
             name={`${field}.value`}
+            normalize={value => Number(value)}
             placeholder="Valor"
+            validate={[required, money]}
           />
         </td>
         <td>
@@ -29,6 +34,7 @@ const renderRows = ({ fields }) =>
             name={`${field}.date`}
             type="date"
             placeholder="Data"
+            validate={[required]}
           />
         </td>
         <TransactionsActions fields={fields} index={index} />

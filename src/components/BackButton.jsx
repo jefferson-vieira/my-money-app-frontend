@@ -1,9 +1,8 @@
 import React from 'react';
-import classnames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 
-const BackButton = ({ match, className, label, title, back = 1 }) => {
-  const pathname = match.url
+const BackButton = ({ location, className, label, title, back = 1 }) => {
+  const pathname = location.pathname
     .split('/')
     .slice(0, -back)
     .join('/');
@@ -11,7 +10,7 @@ const BackButton = ({ match, className, label, title, back = 1 }) => {
   return (
     <Link
       to={pathname}
-      className={classnames('btn', className ? className : 'btn-secondary')}
+      className={className || 'btn btn-secondary'}
       title={title || label}
     >
       {label}

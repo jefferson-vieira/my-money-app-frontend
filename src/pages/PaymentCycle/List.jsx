@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import IconButton from 'components/IconButton';
 import Pagination from 'components/widgets/Pagination';
 
+import { localDate } from 'utils/formatter'
+
 const PaymentCycleList = ({
   match,
   paymentCycles: {
@@ -43,23 +45,28 @@ const PaymentCycleList = ({
           {paymentCycles.length ? (
             paymentCycles.map(paymentCycle => (
               <tr key={paymentCycle.id}>
-                <td>{paymentCycle.bankingAccount.bankName}</td>
+                <td>
+                  {paymentCycle.bankingAccount &&
+                    paymentCycle.bankingAccount.bankName}
+                </td>
                 <td>{paymentCycle.description}</td>
-                <td>{paymentCycle.date}</td>
+                <td>{localDate(paymentCycle.date)}</td>
                 <td className="payment-cycle__list__actions">
-                  <IconButton
-                    title="Editar"
-                    className="btn btn-warning"
-                    icon="edit"
-                    color="#fff"
-                    onClick={() => editPaymentCycle(paymentCycle)}
-                  />
-                  <IconButton
-                    title="Remover"
-                    className="btn btn-danger"
-                    icon="trash"
-                    onClick={() => removePaymentCycle(paymentCycle)}
-                  />
+                  <div>
+                    <IconButton
+                      title="Editar"
+                      className="btn btn-warning"
+                      icon="edit"
+                      color="#fff"
+                      onClick={() => editPaymentCycle(paymentCycle)}
+                    />
+                    <IconButton
+                      title="Remover"
+                      className="btn btn-danger"
+                      icon="trash"
+                      onClick={() => removePaymentCycle(paymentCycle)}
+                    />
+                  </div>
                 </td>
               </tr>
             ))

@@ -2,7 +2,8 @@ const routes = {
   dashboard: 'Resumo',
   banks: 'Contas',
   'payment-cycles': 'Pagamentos',
-  'create': 'Novo'
+  'create': 'Novo',
+  details: 'Detalhes'
 };
 
 export default routes;

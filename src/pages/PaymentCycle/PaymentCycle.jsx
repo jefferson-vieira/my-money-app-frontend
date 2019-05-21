@@ -1,6 +1,6 @@
 import React, { Component, lazy } from 'react';
 
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import Lazy from 'routes/Lazy';
 
 import { connect } from 'react-redux';
@@ -10,14 +10,17 @@ import { Actions as paymentCycleActions } from 'store/ducks/paymentCycle';
 
 import Header from 'components/ContentHeader';
 
-import { getPaymentCycles, getPaymentCycleById } from 'services/paymentCycle';
-import { getBanks } from 'services/bank';
+import {
+  getPaymentCycles,
+  getPaymentCycleById,
+  addPaymentCycle
+} from 'services/paymentCycle';
 
 import { showErrorModal } from 'utils/error';
+import { showSuccessModal } from 'utils/success';
 
 const PaymentCycleList = lazy(() => import('./List'));
 const PaymentCycleForm = lazy(() => import('./Form'));
-const PaymentCycleEdit = lazy(() => import('./Edit'));
 
 class PaymentCycle extends Component {
   componentDidMount() {
@@ -25,33 +28,52 @@ class PaymentCycle extends Component {
   }
 
   getPaymentCycles = async page => {
-    // const { setLoading, setPaymentCycles } = this.props;
-    // try {
-    //   setLoading(true);
-    //   const { data: paymentCycles } = await getPaymentCycles(page - 1);
-    //   setPaymentCycles(paymentCycles);
-    // } catch (error) {
-    //   showErrorModal(error, true).then(() => this.getPaymentCycles(page));
-    // } finally {
-    //   setLoading(false);
-    // }
+    const { setLoading, setPaymentCycles } = this.props;
+    try {
+      setLoading(true);
+      const { data: paymentCycles } = await getPaymentCycles(page - 1);
+      setPaymentCycles(paymentCycles);
+    } catch (error) {
+      showErrorModal(error, true).then(() => this.getPaymentCycles(page));
+    } finally {
+      setLoading(false);
+    }
   };
 
   getPaymentCycleById = async id => {
-    // const { setLoading } = this.props;
-    // try {
-    //   setLoading(true);
-    //   const { data: paymentCycle } = await getPaymentCycleById(id);
-    //   return paymentCycle;
-    // } catch (error) {
-    //   showErrorModal(error, true).then(() => this.getPaymentCycleById(id));
-    // } finally {
-    //   setLoading(false);
-    // }
+    const { setLoading } = this.props;
+    try {
+      setLoading(true);
+      const { data: paymentCycle } = await getPaymentCycleById(id);
+      return paymentCycle;
+    } catch (error) {
+      showErrorModal(error, true).then(() => this.getPaymentCycleById(id));
+    } finally {
+      setLoading(false);
+    }
   };
 
-  createPaymentCycle = values => {
-    console.log('v', values);
+  createPaymentCycle = async values => {
+    const { setLoading, history } = this.props;
+
+    try {
+      setLoading(true);
+      await addPaymentCycle(values);
+      showSuccessModal('Ciclo de pagamento adicionado com sucesso!').then(
+        () => {
+          this.getPaymentCycles();
+          history.push('/me/payment-cycles');
+        }
+      );
+    } catch (error) {
+      showErrorModal(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  savePaymentCycle = values => {
+    console.log('s', values);
   };
 
   editPaymentCycle = paymentCycle => {
@@ -64,7 +86,7 @@ class PaymentCycle extends Component {
   };
 
   render() {
-    const { paymentCycles = {}, banks = [], match } = this.props;
+    const { paymentCycles = {}, match } = this.props;
 
     return (
       <section id="payment-cycle" className="payment-cycle">
@@ -90,21 +112,22 @@ class PaymentCycle extends Component {
             exact
             path={`${match.url}/create`}
             render={props => (
-              <PaymentCycleForm
-                {...props}
-                banks={banks}
-                getBanks={this.getBanks}
-                onSubmit={this.createPaymentCycle}
-              />
+              <PaymentCycleForm {...props} onSubmit={this.createPaymentCycle} />
             )}
+          />
+          <Route
+            exact
+            path={`${match.url}/details`}
+            render={() => <Redirect to={match.url} />}
           />
           <Route
             exact
             path={`${match.url}/details/:id`}
             render={props => (
-              <PaymentCycleEdit
+              <PaymentCycleForm
                 {...props}
                 getPaymentCycle={this.getPaymentCycleById}
+                onSubmit={this.savePaymentCycle}
               />
             )}
           />
@@ -115,8 +138,7 @@ class PaymentCycle extends Component {
 }
 
 const mapStateToProps = state => ({
-  paymentCycles: state.paymentCycle.paymentCycles,
-  banks: state.bank.banks
+  paymentCycles: state.paymentCycle.paymentCycles
 });
 
 const mapDispatchToProps = dispatch =>

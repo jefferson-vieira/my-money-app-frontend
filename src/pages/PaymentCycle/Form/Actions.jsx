@@ -18,7 +18,7 @@ const PaymentCycleActions = ({ match, valid }) => {
         Salvar
       </button>
       <BackButton
-        className="btn-danger"
+        className="btn btn-danger"
         label="Cancelar"
         title="Descartar alterações e voltar"
       />

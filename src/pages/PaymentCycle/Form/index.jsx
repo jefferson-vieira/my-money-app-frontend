@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { reduxForm, formValueSelector } from 'redux-form';
+import { reduxForm, initialize, formValueSelector } from 'redux-form';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as statusActions } from 'store/ducks/status';
+import { Actions as bankActions } from 'store/ducks/bank';
 
 import PaymentCycleInformations from './Informations';
 import PaymentCycleSummary from './Summary';
@@ -16,8 +17,27 @@ import { showErrorModal } from 'utils/error';
 
 class PaymentCycleForm extends Component {
   componentDidMount() {
+    this.initialize();
     this.getBanks();
   }
+
+  initialize = async () => {
+    debugger
+    const { setLoading, getPaymentCycle, match, initialize } = this.props;
+
+    if (!match.params.id) return;
+
+
+    try {
+      setLoading(true);
+      const paymentCycle = await getPaymentCycle(match.params.id);
+      initialize(paymentCycle);
+    } catch (error) {
+      showErrorModal(error, true).then(() => this.getPaymentCycle());
+    } finally {
+      setLoading(false);
+    }
+  };
 
   getBanks = async () => {
     const { setLoading, setBanks } = this.props;
@@ -27,21 +47,19 @@ class PaymentCycleForm extends Component {
       const { data: banks } = await getBanks();
       setBanks(banks);
     } catch (error) {
-      // showErrorModal(error, true).then(() => this.getBanks());
+      showErrorModal(error, true).then(() => this.getBanks());
     } finally {
       setLoading(false);
     }
   };
 
   render() {
-    console.log('render');
-
-    const { summary, handleSubmit, onSubmit, valid } = this.props;
+    const { banks, summary, handleSubmit, onSubmit, valid } = this.props;
 
     return (
       <section className="payment-cycle__form">
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <PaymentCycleInformations />
+          <PaymentCycleInformations banks={banks} />
           <hr />
           <PaymentCycleSummary summary={summary} />
           <hr />
@@ -64,7 +82,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...statusActions }, dispatch);
+  bindActionCreators(
+    {
+      ...statusActions,
+      ...bankActions,
+      initialize: paymentCycle => initialize('paymentCycleForm', paymentCycle)
+    },
+    dispatch
+  );
 
 PaymentCycleForm = connect(
   mapStateToProps,

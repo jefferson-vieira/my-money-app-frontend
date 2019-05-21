@@ -6,7 +6,7 @@ import FloatingLabelSelect from 'components/forms/FloatingLabel/Select';
 
 import { required } from 'utils/validators';
 
-const PaymentCycleInformations = ({ banks }) => (
+const PaymentCycleInformations = ({ banks = [] }) => (
   <fieldset className="payment-cycle__form__informations">
     <legend>Informações</legend>
     <div className="row">
@@ -15,8 +15,11 @@ const PaymentCycleInformations = ({ banks }) => (
           component={FloatingLabelSelect}
           id="inputPaymentCycleBank"
           name="bankingAccountId"
+          normalize={value => Number(value)}
           label="Conta bancária"
           options={banks}
+          valueSelector="id"
+          labelSelector="bankName"
           validate={[required]}
         />
       </div>

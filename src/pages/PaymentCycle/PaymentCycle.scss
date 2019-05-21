@@ -2,27 +2,8 @@
 
 .payment-cycle {
   &__list {
-    & table {
-      display: flex;
-      flex-flow: column;
-      width: 100%;
-    }
-
-    & thead {
-      flex: 0 0 auto;
-    }
-
-    & tbody {
-      flex: 1 1 auto;
-      display: block;
-      overflow-y: auto;
-      min-height: 40vh;
-    }
-
-    & tr {
-      width: 100%;
-      display: table;
-      table-layout: fixed;
+    & th {
+      min-width: 200px;
     }
 
     &__create {
@@ -30,6 +11,12 @@
 
       display: flex;
       flex-direction: row-reverse;
+    }
+
+    &__actions > div {
+      display: grid;
+      column-gap: 1rem;
+      @include grid(xs, 2);
     }
   }
 
@@ -50,6 +37,11 @@
 
     &__transactions {
       position: relative;
+      margin-bottom: 1rem;
+
+      & button {
+        height: 38px;
+      }
 
       & > button {
         position: absolute;
