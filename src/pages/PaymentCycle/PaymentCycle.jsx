@@ -13,11 +13,14 @@ import Header from 'components/ContentHeader';
 import {
   getPaymentCycles,
   getPaymentCycleById,
-  addPaymentCycle
+  addPaymentCycle,
+  updatePaymentCycle,
+  deletePaymentCycle
 } from 'services/paymentCycle';
 
-import { showErrorModal } from 'utils/error';
+import { showConfirmModal } from 'utils/confirm';
 import { showSuccessModal } from 'utils/success';
+import { showErrorModal } from 'utils/error';
 
 const PaymentCycleList = lazy(() => import('./List'));
 const PaymentCycleForm = lazy(() => import('./Form'));
@@ -72,8 +75,22 @@ class PaymentCycle extends Component {
     }
   };
 
-  savePaymentCycle = values => {
-    console.log('s', values);
+  savePaymentCycle = async values => {
+    const { setLoading } = this.props;
+
+    try {
+      setLoading(true);
+      await updatePaymentCycle(values);
+      showSuccessModal('Ciclo de pagamento atualizado com sucesso!').then(
+        () => {
+          this.getPaymentCycles();
+        }
+      );
+    } catch (error) {
+      showErrorModal(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   editPaymentCycle = paymentCycle => {
@@ -81,8 +98,28 @@ class PaymentCycle extends Component {
     history.push(`${match.url}/${paymentCycle.id}`);
   };
 
-  removePaymentCycle = paymentCycle => {
-    alert(paymentCycle.id);
+  removePaymentCycle = async paymentCycle => {
+    const { value: confirm } = await showConfirmModal(
+      'Tem certeza de que quer mesmo remover este ciclo de pagamento? Os dados vinculados a ele serão perdidos...'
+    );
+
+    if (confirm) {
+      const { setLoading } = this.props;
+
+      try {
+        setLoading(true);
+        await deletePaymentCycle(paymentCycle.id);
+        showSuccessModal('Ciclo de pagamento removido com sucesso!').then(
+          () => {
+            this.getPaymentCycles();
+          }
+        );
+      } catch (error) {
+        showErrorModal(error);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   render() {
