@@ -67,13 +67,19 @@ class Auth extends Component {
 
     try {
       setLoading(true);
-
-      const user = this.needsAccount()
-        ? await register(values)
-        : await login(values);
-      setUser(user);
-
-      history.push(redirect);
+      if (this.needsAccount()) {
+        await register(values);
+        showSuccessModal(
+          `Um e-mail de ativação de conta foi enviado para: ${
+            values.email
+          }. Valide sua conta antes de prosseguir.`
+        );
+        this.toggleAuthType();
+      } else {
+        const user = await login(values);
+        setUser(user);
+        history.push(redirect);
+      }
     } catch (error) {
       showErrorModal(error);
     } finally {

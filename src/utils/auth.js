@@ -35,8 +35,7 @@ export async function login(user) {
 }
 
 export async function register(user) {
-  await auth.register(user);
-  return login(user);
+  return auth.register(user);
 }
 
 export async function logout() {
