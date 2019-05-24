@@ -17,11 +17,18 @@ import {
 const Contact = ({ getAddress, change, touch }) => {
   const handleAddress = async () => {
     const { logradouro, bairro, localidade, uf } = (await getAddress()) || {};
-    touch('postalCode', 'street', 'number', 'district', 'city', 'state');
-    change('street', logradouro || '');
-    change('district', bairro || '');
-    change('city', localidade || '');
-    change('state', uf || '');
+    touch(
+      'address.postalCode',
+      'address.street',
+      'address.number',
+      'address.district',
+      'address.city',
+      'address.state'
+    );
+    change('address.street', logradouro || '');
+    change('address.district', bairro || '');
+    change('address.city', localidade || '');
+    change('address.state', uf || '');
   };
 
   return (
