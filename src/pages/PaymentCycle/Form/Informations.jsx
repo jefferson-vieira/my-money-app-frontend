@@ -14,7 +14,7 @@ const PaymentCycleInformations = ({ banks = [] }) => (
         <Field
           component={FloatingLabelSelect}
           id="inputPaymentCycleBank"
-          name="bankingAccountId"
+          name="bankingAccount"
           normalize={value => Number(value)}
           label="Conta bancária"
           options={banks}

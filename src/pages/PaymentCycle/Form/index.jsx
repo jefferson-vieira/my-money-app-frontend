@@ -22,11 +22,9 @@ class PaymentCycleForm extends Component {
   }
 
   initialize = async () => {
-    debugger
     const { setLoading, getPaymentCycle, match, initialize } = this.props;
 
     if (!match.params.id) return;
-
 
     try {
       setLoading(true);
@@ -73,7 +71,9 @@ class PaymentCycleForm extends Component {
 }
 
 PaymentCycleForm = reduxForm({
-  form: 'paymentCycleForm'
+  form: 'paymentCycleForm',
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true
 })(PaymentCycleForm);
 
 const mapStateToProps = state => ({

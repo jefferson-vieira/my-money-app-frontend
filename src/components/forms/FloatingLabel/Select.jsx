@@ -7,7 +7,6 @@ const Select = ({
   options = [],
   valueSelector,
   labelSelector,
-  defaultValue,
   className,
   ...props
 }) => (
@@ -15,7 +14,7 @@ const Select = ({
     <select
       {...input}
       {...props}
-      defaultValue={defaultValue || ''}
+      value={value}
       className={classnames(
         {
           validate: value

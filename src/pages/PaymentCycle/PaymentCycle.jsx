@@ -95,7 +95,7 @@ class PaymentCycle extends Component {
 
   editPaymentCycle = paymentCycle => {
     const { history, match } = this.props;
-    history.push(`${match.url}/${paymentCycle.id}`);
+    history.push(`${match.url}/details/${paymentCycle.id}`);
   };
 
   removePaymentCycle = async paymentCycle => {
