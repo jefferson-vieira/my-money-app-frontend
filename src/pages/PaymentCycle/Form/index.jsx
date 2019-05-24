@@ -29,7 +29,10 @@ class PaymentCycleForm extends Component {
     try {
       setLoading(true);
       const paymentCycle = await getPaymentCycle(match.params.id);
-      initialize(paymentCycle);
+      initialize({
+        ...paymentCycle,
+        bankingAccount: paymentCycle.bankingAccount.id
+      });
     } catch (error) {
       showErrorModal(error, true).then(() => this.getPaymentCycle());
     } finally {
