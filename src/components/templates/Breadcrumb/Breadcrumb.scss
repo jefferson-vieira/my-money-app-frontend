@@ -1,7 +1,9 @@
 .breadcrumb {
   display: flex;
   align-items: center;
+
   background-color: #ddd;
+  border-radius: 0;
 
   &-item::before {
     content: '>' !important;

@@ -6,7 +6,6 @@ export function showErrorModal(error, retry = false) {
     type: 'error',
     title: '<p>Ops...</p>',
     text: handleError(error),
-    confirmButtonColor: '#00c689',
     confirmButtonText: retry ? 'Tentar novamente' : 'OK',
     allowOutsideClick: !retry,
     allowEscapeKey: !retry

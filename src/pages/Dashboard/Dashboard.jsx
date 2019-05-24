@@ -13,7 +13,7 @@ import { getSummary, getBanksWithSummary } from 'services/bank';
 import { showErrorModal } from 'utils/error';
 
 class Dashboard extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.loadDashboard();
   }
 

@@ -21,7 +21,7 @@ class Bank extends Component {
     showForm: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getBanks();
   }
 

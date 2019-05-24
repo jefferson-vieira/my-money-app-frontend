@@ -1,4 +1,4 @@
-import './Auth.scss';
+import '../Auth.scss';
 
 import React, { Component } from 'react';
 
@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as statusActions } from 'store/ducks/status';
 
-import PasswordRecovery from './Form/PasswordRecovery';
+import PasswordRecovery from './PasswordRecovery';
 
 import { showSuccessModal } from 'utils/success';
 import { showErrorModal } from 'utils/error';

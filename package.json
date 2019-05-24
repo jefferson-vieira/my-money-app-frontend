@@ -45,6 +45,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/react": "^16.8.17",
     "nock": "^10.0.6"
   }
 }

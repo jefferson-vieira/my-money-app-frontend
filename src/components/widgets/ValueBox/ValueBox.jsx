@@ -10,7 +10,7 @@ const ValueBox = ({ color, icon, text, value }) => (
     </div>
     <div className="value-box__content">
       <h3>{text}</h3>
-      <h1>$ {money(value)}</h1>
+      <h3>$ {money(value)}</h3>
     </div>
   </div>
 );

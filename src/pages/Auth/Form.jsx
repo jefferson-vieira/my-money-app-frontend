@@ -16,8 +16,9 @@ import { showErrorToast } from 'utils/error';
 
 class Form extends Component {
   getAddress = async () => {
+    const { postalCode } = this.props;
+
     try {
-      const { postalCode } = this.props;
       if (postalCode) {
         showInfoToast('Buscando endereço pelo CEP...');
         const address = await getAddress(postalCode);
@@ -46,6 +47,9 @@ class Form extends Component {
       <div className="auth__form">
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <h2 className="auth__title">{authType}</h2>
+          <Fade show={!needsAccount}>
+            <Login changePassword={changePassword} />
+          </Fade>
           <Fade show={needsAccount}>
             <Register
               getAddress={this.getAddress}
@@ -53,13 +57,9 @@ class Form extends Component {
               touch={touch}
             />
           </Fade>
-          <Fade show={!needsAccount}>
-            <Login />
-          </Fade>
           <Actions
             needsAccount={needsAccount}
             toggleAuthType={toggleAuthType}
-            changePassword={changePassword}
             valid={valid}
           />
         </form>
@@ -73,7 +73,7 @@ Form = reduxForm({
 })(Form);
 
 Form = connect(state => ({
-  postalCode: formValueSelector('authForm')(state, 'postalCode')
+  postalCode: formValueSelector('authForm')(state, 'address.postalCode')
 }))(Form);
 
 export default Form;

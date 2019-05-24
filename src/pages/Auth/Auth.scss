@@ -74,6 +74,7 @@
     margin: 1rem 0 2rem;
     color: $primary;
     font-weight: bold;
+    text-align: center;
   }
 
   &__actions {
@@ -84,5 +85,10 @@
     align-items: center;
 
     flex-wrap: wrap;
+
+    &--login {
+      @include center-content();
+      margin: 1.5rem 0;
+    }
   }
 }

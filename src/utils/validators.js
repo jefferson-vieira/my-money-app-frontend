@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const required = (value = '') => !value.replace(/\s+/, ' ').trim();
+export const required = (value = '') => !String(value).replace(/\s+/, ' ').trim();
 
 export const name = (value = '') => !/^[a-zA-ZÀ-ÿ ]+$/.test(value);
 
@@ -54,3 +54,5 @@ export const cel = (value = '') =>
 export const postalCode = (value = '') => !/^[\d]{5}[-]{1}[\d]{3}$/.test(value);
 
 export const state = (value = '') => !/^[a-zA-Z]{2}$/.test(value);
+
+export const money = (value = '') => !/^[1-9]\d*(?:\.\d{0,2})?$/.test(value);

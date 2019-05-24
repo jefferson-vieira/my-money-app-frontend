@@ -12,7 +12,7 @@ class ActiveAccount extends Component {
     authenticated: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     activeAccount(this.props.match.params.token)
       .then(() => {
         this.setState({ authenticated: true });

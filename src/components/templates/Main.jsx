@@ -15,6 +15,7 @@ import Lazy from 'routes/Lazy';
 
 const Dashboard = lazy(() => import('pages/Dashboard'));
 const Bank = lazy(() => import('pages/Bank'));
+const PaymentCycle = lazy(() => import('pages/PaymentCycle'));
 
 class Main extends Component {
   state = {
@@ -55,8 +56,9 @@ class Main extends Component {
             <Breadcrumb />
             <div className="container-fluid">
               <Lazy>
-                <Route exact path="/me/dashboard" component={Dashboard} />
-                <Route exact path="/me/banks" component={Bank} />
+                <Route path="/me/dashboard" component={Dashboard} />
+                <Route path="/me/banks" component={Bank} />
+                <Route path="/me/payment-cycles" component={PaymentCycle} />
               </Lazy>
             </div>
           </div>
