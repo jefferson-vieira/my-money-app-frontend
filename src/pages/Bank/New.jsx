@@ -5,7 +5,7 @@ const Card = ({ addAccount }) => (
   <div className="card" title="Nova conta" onClick={addAccount}>
     <div className="card-body">
       <div className="card-add">
-        <FontAwesomeIcon icon="plus" size="3x" />
+        <FontAwesomeIcon icon="plus" size="6x" />
       </div>
     </div>
   </div>
