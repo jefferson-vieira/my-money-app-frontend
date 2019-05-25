@@ -9,9 +9,7 @@
   &__balance {
     display: grid;
     @include grid(xs, 1);
-    @include grid(sm, 2);
     @include grid(md, 3);
-    @include grid(lg, 4);
     @include grid(xl, 5);
 
     & .card {
