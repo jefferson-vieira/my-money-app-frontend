@@ -39,7 +39,10 @@
       &-body {
         display: grid;
         grid-template-rows: 1fr;
-        background-color: $primary;
+        
+        &.card-add {
+          background-color: $primary;
+        }
       }
 
       &-title {
@@ -83,6 +86,7 @@
 
         &:hover {
           transform: scale(1.25);
+          cursor: pointer;
         }
       }
     }
