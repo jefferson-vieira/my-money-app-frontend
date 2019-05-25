@@ -39,10 +39,6 @@
       &-body {
         display: grid;
         grid-template-rows: 1fr;
-        
-        &.card-add {
-          background-color: $primary;
-        }
       }
 
       &-title {
@@ -90,5 +86,9 @@
         }
       }
     }
+  }
+
+  &__add {
+    background-color: $primary;
   }
 }
