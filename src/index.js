@@ -12,6 +12,13 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
+
+
+import { show } from 'routes/routes';
+show();
+
+
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

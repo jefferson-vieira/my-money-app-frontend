@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import classnames from 'classnames';
+import { Route } from 'react-router';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,6 +17,9 @@ import { login, register } from 'utils/auth';
 import { changePassword } from 'services/auth';
 import { showSuccessModal } from 'utils/success';
 import { showErrorModal } from 'utils/error';
+
+const Active = lazy(() => import('pages/Auth/Form/ActiveAccount'));
+const ChangePassword = lazy(() => import('pages/Auth/Form/ChangePassword'));
 
 class Auth extends Component {
   state = {
@@ -89,25 +93,43 @@ class Auth extends Component {
 
   render() {
     const { authType } = this.state;
+    const { match } = this.props;
     const needsAccount = this.needsAccount();
 
     return (
       <section id="auth" className="auth">
-        <div
-          className={classnames(
-            'auth__card',
-            `auth__card--${needsAccount ? 'register' : 'login'}`
+        <Route
+          exact
+          path={match.url}
+          render={props => (
+            <div
+              {...props}
+              className={classnames(
+                'auth__card',
+                `auth__card--${needsAccount ? 'register' : 'login'}`
+              )}
+            >
+              <Logo />
+              <Form
+                authType={authType}
+                needsAccount={needsAccount}
+                toggleAuthType={this.toggleAuthType}
+                changePassword={this.changePassword}
+                onSubmit={this.handleSubmit}
+              />
+            </div>
           )}
-        >
-          <Logo />
-          <Form
-            authType={authType}
-            needsAccount={needsAccount}
-            toggleAuthType={this.toggleAuthType}
-            changePassword={this.changePassword}
-            onSubmit={this.handleSubmit}
-          />
-        </div>
+        />
+        <Route
+          exact
+          path={`${match.url}/registration-confirm/:token`}
+          render={props => <Active {...props} />}
+        />
+        <Route
+          exact
+          path={`${match.url}/change-password/:token`}
+          render={props => <ChangePassword {...props} />}
+        />
       </section>
     );
   }

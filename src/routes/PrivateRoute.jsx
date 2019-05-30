@@ -7,24 +7,24 @@ import { Actions as statusActions } from 'store/ducks/status';
 
 class PrivateRoute extends Component {
   componentDidMount() {
-    const { user, location, setRedirect } = this.props;
+    const { isAuthenticated, setRedirect, location } = this.props;
 
-    if (!user) setRedirect(location.pathname);
+    if (!isAuthenticated) setRedirect(location.state.from);
   }
 
   render() {
-    const { component: Component, user, ...others } = this.props;
+    const { isAuthenticated, component: Component, ...others } = this.props;
 
     return (
       <Route
         {...others}
         render={props =>
-          user ? (
+          isAuthenticated ? (
             <Component {...props} />
           ) : (
             <Redirect
               to={{
-                pathname: '/auth',
+                pathname: '/login',
                 state: { from: props.location }
               }}
             />
@@ -36,11 +36,11 @@ class PrivateRoute extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  isAuthenticated: state.status.isAuthenticated
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(statusActions, dispatch);
+  bindActionCreators({ setRedirect: statusActions.setRedirect }, dispatch);
 
 PrivateRoute = connect(
   mapStateToProps,

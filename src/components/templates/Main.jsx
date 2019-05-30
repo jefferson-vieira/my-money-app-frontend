@@ -12,6 +12,7 @@ import Header from './Header';
 import Breadcrumb from './Breadcrumb';
 
 import Lazy from 'routes/Lazy';
+import { Switch } from 'react-router';
 
 const Dashboard = lazy(() => import('pages/Dashboard'));
 const Bank = lazy(() => import('pages/Bank'));
@@ -55,11 +56,9 @@ class Main extends Component {
           >
             <Breadcrumb />
             <div className="container-fluid">
-              <Lazy>
-                <Route path="/me/dashboard" component={Dashboard} />
-                <Route path="/me/banks" component={Bank} />
-                <Route path="/me/payment-cycles" component={PaymentCycle} />
-              </Lazy>
+
+                {this.props.children}
+
             </div>
           </div>
         </div>

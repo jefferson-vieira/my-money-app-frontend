@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   loading: false,
   error: false,
   redirect: '/me/dashboard',
-  mobile: window.screen.width < 576
+  mobile: window.screen.width < 576,
+  isAuthenticated: false
 };
 
 const setError = (state = INITIAL_STATE, { status }) => ({

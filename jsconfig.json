@@ -1,20 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
-    "allowSyntheticDefaultImports": false,
-    "baseUrl": "./",
+    "target": "esnext",
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
     "jsx": "react",
     "paths": {
-      "assets/*": ["src/assets/*"],
-      "components/*": ["src/components/*"],
-      "services/*": ["src/services/*"],
-      "configs/*": ["src/configs/*"],
-      "pages/*": ["src/pages/*"],
-      "routes/*": ["src/routes/*"],
-      "store/*": ["src/store/*"],
-      "utils/*": ["src/utils/*"]
+      "*": ["*"]
     }
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"]
 }

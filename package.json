@@ -9,18 +9,20 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "harmony-reflect": "^1.6.1",
     "history": "^4.7.2",
+    "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-redux": "^6.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "react-redux": "^7.0.3",
     "react-redux-toastr": "^7.4.7",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.5",
     "react-tooltip": "^3.10.0",
-    "react-transition-group": "^2.5.3",
+    "react-transition-group": "^4.0.1",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-promise": "^0.6.0",
@@ -36,16 +38,28 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
-    "@types/react": "^16.8.17",
+    "@types/react": "^16.8.19",
     "nock": "^10.0.6"
   }
 }
