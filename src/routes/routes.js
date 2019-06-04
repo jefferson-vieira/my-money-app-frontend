@@ -182,38 +182,25 @@ const RouteWithSubRoutes = (
     ...route,
     key: index,
     render: props => (
-      <Component
-        {...props}
-        children={
-          <Switch>
-            {routes.map(props =>
-              RouteWithSubRoutes({
-                ...props,
-                path: route.path + props.path,
-                auth: route.auth || props.auth
-              })
-            )}
-          </Switch>
-        }
-      />
+      <Component {...props}>
+        <Switch>
+          {routes.map(props =>
+            RouteWithSubRoutes({
+              ...props,
+              path: route.path + props.path,
+              auth: route.auth || props.auth
+            })
+          )}
+        </Switch>
+      </Component>
     )
   };
 
   return auth ? <Route {...props} /> : <Route {...props} />;
 };
 
-export const routesWithSubRoutes = routes.map(RouteWithSubRoutes);
+export default routes.map(RouteWithSubRoutes);
 
 export function show() {
   console.log(routes);
 }
-
-const r = {
-  dashboard: 'Resumo',
-  banks: 'Contas',
-  'payment-cycles': 'Pagamentos',
-  create: 'Novo',
-  details: 'Detalhes'
-};
-
-export default r;

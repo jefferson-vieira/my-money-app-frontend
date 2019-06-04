@@ -8,7 +8,7 @@ import ScrollToTop from './ScrollToTop';
 import Lazy from './Lazy';
 // import PrivateRoute from './PrivateRoute';
 
-import { routesWithSubRoutes as routes } from './routes';
+import routes from './routes';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 // const Auth = lazy(() => import('pages/Auth'));
