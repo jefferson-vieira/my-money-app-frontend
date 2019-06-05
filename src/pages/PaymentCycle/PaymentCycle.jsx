@@ -1,7 +1,7 @@
 import React, { Component, lazy } from 'react';
 
 import { Route, Redirect } from 'react-router';
-import Lazy from 'routes/Lazy';
+import Lazy from 'routes/LazyRoute';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

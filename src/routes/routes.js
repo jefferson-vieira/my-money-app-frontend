@@ -16,6 +16,7 @@ const Main = lazy(() => import('components/templates/Main'));
 const Bank = lazy(() => import('pages/Bank'));
 const PaymentCycle = lazy(() => import('pages/PaymentCycle'));
 
+
 class Dashboard extends React.Component {
   state = {
     count: 0
@@ -25,53 +26,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
-        <h1>Dash: {this.state.count}</h1>
+
         <Link to="/me/banks">oi</Link>
         <button
           onClick={() => {
@@ -121,44 +76,7 @@ const routes = [
         component: () => (
           <div>
             <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
-            <h2>oi</h2>
+
           </div>
         )
       },
@@ -183,15 +101,18 @@ const RouteWithSubRoutes = (
     key: index,
     render: props => (
       <Component {...props}>
-        <Switch>
-          {routes.map(props =>
-            RouteWithSubRoutes({
-              ...props,
-              path: route.path + props.path,
-              auth: route.auth || props.auth
-            })
-          )}
-        </Switch>
+        {routes.length && (
+
+     <Switch>
+              {routes.map(props =>
+                RouteWithSubRoutes({
+                  ...props,
+                  path: route.path + props.path,
+                  auth: route.auth || props.auth
+                })
+              )}
+            </Switch>
+        )}
       </Component>
     )
   };

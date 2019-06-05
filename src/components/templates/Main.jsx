@@ -11,7 +11,7 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import Breadcrumb from './Breadcrumb';
 
-import Lazy from 'routes/Lazy';
+import Lazy from 'routes/LazyRoute';
 import { Switch } from 'react-router';
 
 const Dashboard = lazy(() => import('pages/Dashboard'));
