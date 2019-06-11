@@ -35,6 +35,7 @@ code {
 
 .wrapper {
   display: flex;
+  position: relative;
 }
 
 .content {
@@ -42,15 +43,6 @@ code {
   background-color: #eee;
   width: 100%;
   min-width: $min-screen-width;
-}
-
-.container-fluid {
-  position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    text-align: center;
 }
 
 .wrapper-content {

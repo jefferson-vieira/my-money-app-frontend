@@ -1,6 +1,9 @@
-import moment from 'moment';
+import { parseISO, isAfter } from 'date-fns';
 
-export const required = (value = '') => !String(value).replace(/\s+/, ' ').trim();
+export const required = (value = '') =>
+  !String(value)
+    .replace(/\s+/, ' ')
+    .trim();
 
 export const name = (value = '') => !/^[a-zA-ZÀ-ÿ ]+$/.test(value);
 
@@ -21,7 +24,7 @@ export const matchField = formField => (value = '', allValues) =>
   value !== allValues[formField];
 
 export const beforeOrEqual = (value = '') =>
-  !moment(value, 'YYYY-MM-DD').isSameOrBefore(new Date());
+  isAfter(parseISO(value), new Date());
 
 export const cpf = (value = '') =>
   value.length !== 11 || !(new Set(value).size > 1) || !isValidCpf(value);

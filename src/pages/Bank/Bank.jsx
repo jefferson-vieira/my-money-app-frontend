@@ -22,7 +22,7 @@ class Bank extends Component {
   };
 
   componentDidMount() {
-    this.getBanks();
+    // this.getBanks();
   }
 
   getBanks = async () => {

@@ -1,66 +1,36 @@
 import React, { lazy } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Actions as statusActions } from 'store/ducks/status';
-import { Actions as bankActions } from 'store/ducks/bank';
-
 const Auth = lazy(() => import('pages/Auth'));
-
 const Main = lazy(() => import('components/templates/Main'));
-// const Dashboard = lazy(() => import('pages/Dashboard'));
+const Dashboard = lazy(() => import('pages/Dashboard'));
 const Bank = lazy(() => import('pages/Bank'));
 const PaymentCycle = lazy(() => import('pages/PaymentCycle'));
-
-
-class Dashboard extends React.Component {
-  state = {
-    count: 0
-  };
-
-  render() {
-    return (
-      <div>
-        <h1>Dash: {this.state.count}</h1>
-
-        <Link to="/me/banks">oi</Link>
-        <button
-          onClick={() => {
-            this.setState({ count: this.state.count + 1 });
-            this.props.setLoading(true);
-            this.props.setLoading(false);
-          }}
-        >
-          Click
-        </button>
-      </div>
-    );
-  }
-}
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...statusActions }, dispatch);
-
-Dashboard = connect(
-  null,
-  mapDispatchToProps
-)(Dashboard);
-
 const NotFound = lazy(() => import('pages/NotFound'));
 
 const routes = [
   {
     exact: true,
     path: '/',
-    component: () => <Redirect to="/login" />
+    component: () => <Redirect to="/auth/signin" />
   },
   {
-    path: '/login',
-    component: Auth
+    path: '/auth',
+    component: Auth,
+    routes: [
+      {
+        exact: true,
+        path: '/signin',
+        component: () => <Redirect to="/auth/signin" />
+      },
+      {
+        exact: true,
+        path: '/signup',
+        component: () => <Redirect to="/auth/signin" />
+      },
+    ]
   },
   {
     auth: true,
@@ -68,17 +38,17 @@ const routes = [
     component: Main,
     routes: [
       {
+        exact: true,
+        path: '/',
+        component: () => <Redirect to="/me/dashboard" />
+      },
+      {
         path: '/dashboard',
         component: Dashboard
       },
       {
         path: '/banks',
-        component: () => (
-          <div>
-            <h2>oi</h2>
-
-          </div>
-        )
+        component: Bank
       },
       {
         path: '/payment-cycles',
@@ -87,7 +57,6 @@ const routes = [
     ]
   },
   {
-    path: '/',
     component: NotFound
   }
 ];
@@ -101,18 +70,14 @@ const RouteWithSubRoutes = (
     key: index,
     render: props => (
       <Component {...props}>
-        {routes.length && (
-
-     <Switch>
-              {routes.map(props =>
-                RouteWithSubRoutes({
-                  ...props,
-                  path: route.path + props.path,
-                  auth: route.auth || props.auth
-                })
-              )}
-            </Switch>
-        )}
+        {routes.length &&
+          routes.map(props =>
+            RouteWithSubRoutes({
+              ...props,
+              path: route.path + props.path,
+              auth: route.auth || props.auth
+            })
+          )}
       </Component>
     )
   };
@@ -121,7 +86,3 @@ const RouteWithSubRoutes = (
 };
 
 export default routes.map(RouteWithSubRoutes);
-
-export function show() {
-  console.log(routes);
-}

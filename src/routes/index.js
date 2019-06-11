@@ -1,20 +1,27 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import ScrollToTop from './ScrollToTop';
 import LazyRoute from './LazyRoute';
+import PrivateRoute from './PrivateRoute';
 
-import history from './history';
-import routes from './routes';
+const Auth = lazy(() => import('pages/Auth'));
+const Main = lazy(() => import('components/templates/Main'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 const Routes = () => (
-  <Router history={history}>
+  <BrowserRouter>
     <ScrollToTop>
       <LazyRoute>
-        <Switch>{routes}</Switch>
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/auth/signin" />} />
+          <Route path="/auth" component={Auth} />
+          <PrivateRoute path="/me" component={Main} />
+          <Route component={NotFound} />
+        </Switch>
       </LazyRoute>
     </ScrollToTop>
-  </Router>
+  </BrowserRouter>
 );
 
 export default Routes;

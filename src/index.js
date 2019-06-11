@@ -12,18 +12,13 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
-
-
-import { show } from 'routes/routes';
-show();
-
-
+const rootElement = document.getElementById('root');
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  rootElement
 );
 
 serviceWorker.unregister();

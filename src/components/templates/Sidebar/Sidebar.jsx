@@ -1,14 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { Router, NavLink } from 'react-router-dom';
-import history from 'routes/history';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 
 import Logo from '../Logo';
 import Item from './Item';
 
 const Sidebar = ({ mobile, show, toggleShow, className }) => (
-  <Router history={history}>
+  <Router>
     <nav className={classnames('sidebar', { active: show }, className)}>
       <div className="sidebar__container">
         <div className="sidebar__header">

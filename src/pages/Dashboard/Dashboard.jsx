@@ -14,7 +14,7 @@ import { showErrorModal } from 'utils/error';
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.loadDashboard();
+    // this.loadDashboard();
   }
 
   loadDashboard = async () => {
