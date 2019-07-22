@@ -1,31 +1,58 @@
+<h1 align="center">Welcome to My Money App 👋</h1>
+<p>
+  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/node-%3E%3D%2010.16.0-blue.svg" />
+  <img src="https://img.shields.io/badge/npm-%3E%3D%206.9.0-blue.svg" />
+  <img src="https://img.shields.io/badge/yarn-%5E1.16.0-blue.svg" />
+  <a href="https://github.com/jefferson-vieira/my-money-app-frontend#readme">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/jefferson-vieira/my-money-app-frontend/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
+  </a>
+</p>
 
-## Available Scripts
+> É uma aplicação desenvolvida para ajudar a gerênciar multiplas contas bancárias e a situação financeira dos nossos usuários
 
-In the project directory, you can run:
+### 🏠 [Homepage](https://meu-dinheiro-frontend.herokuapp.com)
 
-### `yarn install`
+## Prerequisites
 
-Install all dependencies of the app. Use before the app run for the first time (only).
+- node &gt;= 10.16.0
+- npm &gt;= 6.9.0
+- yarn ^1.16.0
 
-### `yarn start`
+## Install
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+yarn install
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Usage
 
-### `yarn test`
+```sh
+yarn start
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run tests
 
-### `yarn build`
+```sh
+yarn test
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Author
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+👤 **Jefferson Vieira da Silva**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Github: [@jefferson-vieira](https://github.com/jefferson-vieira)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jefferson-vieira/my-money-app-frontend/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

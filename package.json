@@ -2,6 +2,58 @@
   "name": "my-money-app-frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "É uma aplicação desenvolvida para ajudar a gerênciar multiplas contas bancárias e a situação financeira dos nossos usuários",
+  "keywords": [
+    "management",
+    "money",
+    "personal"
+  ],
+  "homepage": "https://meu-dinheiro-frontend.herokuapp.com",
+  "bugs": {
+    "url": "https://github.com/jefferson-vieira/my-money-app-frontend/issues",
+    "email": "jefferson98.vieira@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jefferson-vieira/my-money-app-frontend.git"
+  },
+  "author": {
+    "name": "Jefferson Vieira da Silva",
+    "email": "jefferson98.vieira@gmail.com",
+    "url": "https://github.com/jefferson-vieira"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "build": "react-scripts build --colors",
+    "lint": "eslint --ext .js,.jsx src",
+    "start": "react-scripts start --colors",
+    "start:prod": "serve -s build",
+    "test": "react-scripts test --colors",
+    "test:coverage": "react-scripts test --colors --coverage",
+    "test:watch": "react-scripts test --colors --watch"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
@@ -27,37 +79,17 @@
     "sweetalert2": "^8.11.7",
     "sweetalert2-react-content": "^1.0.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "eslint-plugin-prettier": "^3.1.0",
     "harmony-reflect": "^1.6.1",
     "nock": "^10.0.6",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "serve": "^11.0.2",
+    "source-map-explorer": "^2.0.1"
+  },
+  "engines": {
+    "node": ">= 10.16.0",
+    "npm": ">= 6.9.0",
+    "yarn": "^1.16.0"
   }
 }

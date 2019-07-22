@@ -35,7 +35,7 @@ describe('Testing auth utils...', () => {
 
     nock(API_BASE_URL)
       .persist()
-      .get('/users/me')
+      .get('/me')
       .reply(200, userMock);
   });
 
@@ -78,9 +78,8 @@ describe('Testing auth utils...', () => {
   });
 
   it('showld can do register', async () => {
-    const user = await register(userMock);
-
-    expect(user).toEqual(userMock);
+    const response = await register(userMock);
+    expect(response.status).toEqual(201);
   });
 
   it('showld can do logout', async () => {
@@ -91,14 +90,12 @@ describe('Testing auth utils...', () => {
   });
 
   it('showld validate authentication after auth', async () => {
+    await register(userMock);
+    const userRegister = await validateAuthentication();
+    expect(userRegister).toBeFalsy();
+
     await login(userMock);
     const userLogin = await validateAuthentication();
     expect(userLogin).toEqual(userMock);
-
-    logout();
-
-    await register(userMock);
-    const userRegister = await validateAuthentication();
-    expect(userRegister).toEqual(userMock);
   });
 });
